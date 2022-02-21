@@ -4,15 +4,19 @@ import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const ConfirmEmailScreen = () => {
     const [code, setCode] = useState("");
 
+    const navigation = useNavigation();
+
     const OnConfirmPressed = () => {
-        console.log("Confirmed !");
+        navigation.navigate('HomeScreen');
     }
     const OnNewCodePressed = () => {
-        console.log("Code renvoyé !");
+        navigation.navigate('SignIn');
     }
     const OnBackSignInPressed = () => {
         console.log("Retour vers page SignInScreen !");

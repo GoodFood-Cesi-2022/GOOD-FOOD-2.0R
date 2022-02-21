@@ -5,20 +5,23 @@ import logoGf from '../../../assets/images/logo-Good-Food.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
+import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const {height} = useWindowDimensions();
+    const navigation = useNavigation();
 
     const OnSignInPressed = () => {
-        console.log("Signed in !");
+        // Validate user
+        navigation.navigate('HomeScreen');
     }
     const OnSignUpPressed = () => {
-        console.log("Signed up !");
+        navigation.navigate('SignUp');
     }
     const OnForgotPasswordPressed = () => {
-        console.log("I forgot my password !");
+        navigation.navigate('ForgotPassword');
     }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
         minWidth:300,
         maxWidth:300,
         maxHeight:300,
-        marginTop:80,
+        marginTop:5,
         marginBottom:20,
     }
 })

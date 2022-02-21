@@ -4,15 +4,19 @@ import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const ForgotPasswordScreen = () => {
     const [username, setUsername] = useState("");
 
+    const navigation = useNavigation();
+
     const OnEnvoyerPressed = () => {
-        console.log("Nouveau mot de passe enregistré !");
+        navigation.navigate('NewPassword');
     }
     const OnBackSignInPressed = () => {
-        console.log("Retour à la page SignInScreen !");
+        navigation.navigate('SignIn');
     }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
