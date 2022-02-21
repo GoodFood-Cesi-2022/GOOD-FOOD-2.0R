@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import logoGf from '../../../assets/images/logo-Good-Food.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
+import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState("");
@@ -15,15 +16,6 @@ const SignInScreen = () => {
     }
     const OnSignUpPressed = () => {
         console.log("Signed up !");
-    }
-    const OnSignInFacebook = () => {
-        console.log("Signed in with Facebook !");
-    }
-    const OnSignInGoogle = () => {
-        console.log("Signed in with Google !");
-    }
-    const OnSignInApple = () => {
-        console.log("Signed in with Apple !");
     }
     const OnForgotPasswordPressed = () => {
         console.log("I forgot my password !");
@@ -53,28 +45,12 @@ const SignInScreen = () => {
                 onPress={OnForgotPasswordPressed} 
                 type="TERTIARY" 
             />
-            <CustomButton 
-                text="Se connecter avec Facebook" 
-                onPress={OnSignInFacebook}
-                bgColor="#E7EAF4"
-                fgColor="#4765A9"
-            />
-            <CustomButton 
-                text="Se connecter avec Google"
-                onPress={OnSignInGoogle}
-                bgColor="#FAE9EA"
-                fgColor="#DD4D44"
-            />
-            <CustomButton 
-                text="Se connecter avec Apple" 
-                onPress={OnSignInApple}
-                bgColor="#e3e3e3"
-                fgColor="#363636"
-            />
+            <SocialSignInButtons />
             <CustomButton 
                 text="Vous n'avez pas de compte ? Crééz en un !" 
                 onPress={OnSignUpPressed} 
-                type="TERTIARY" 
+                type="TERTIARY"
+                bgColor="transparent"
             />
         </View>
     </ScrollView>

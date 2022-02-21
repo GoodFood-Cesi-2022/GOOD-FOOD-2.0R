@@ -16,7 +16,8 @@ const CustomButton = ({onPress, text, type="PRIMARY", bgColor, fgColor }) => {
                     styles.text, 
                     styles[`text_${type}`],
                     fgColor ? {color: fgColor} : {}
-                    ]}>{text}</Text>
+                    ]}>{text}
+                </Text>
             </TouchableOpacity>
           </View>
         );
@@ -36,12 +37,22 @@ const styles = StyleSheet.create({
     container_PRIMARY:{
         backgroundColor:"#5D38F0",
     },
+    container_SECONDARY:{
+        borderColor:"#5D38F0",
+        borderWidth:2,
+        borderRadius:5,
+    },
     container_TERTIARY:{
         borderWidth:0,
         marginBottom:10,
     },
     text:{
+        fontWeight:'bold',
         color:'white',
+    },
+    text_SECONDARY:{
+        fontWeight:'bold',
+        color:'#5D38F0',
     },
     text_TERTIARY:{
         fontWeight:'bold',
