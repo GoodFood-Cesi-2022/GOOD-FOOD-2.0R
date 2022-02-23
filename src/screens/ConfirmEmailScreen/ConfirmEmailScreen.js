@@ -5,35 +5,40 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
 
 
 const ConfirmEmailScreen = () => {
-    const [code, setCode] = useState("");
+    const {control, handleSubmit} = useForm();
 
     const navigation = useNavigation();
 
-    const OnConfirmPressed = () => {
+    const OnConfirmPressed = (data) => {
+        console.log(data);
         navigation.navigate('HomeScreen');
     }
     const OnNewCodePressed = () => {
         navigation.navigate('SignIn');
     }
     const OnBackSignInPressed = () => {
-        console.log("Retour vers page SignInScreen !");
+        navigation.navigate('SignIn');
     }
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
             <Text style={styles.title}>Confirmez votre email</Text>
             <CustomInput
+                name={code}
+                control={control}
                 placeholder="Entrez votre code de confirmation"
-                value={code}
-                setValue={setCode}
                 secureTextEntry={true}
+                rules={{
+                    required: "Le code de confirmation est requis"
+                }}
             />
             <CustomButton 
                 text="Confirmer" 
-                onPress={OnConfirmPressed}
+                onPress={handleSubmit(OnConfirmPressed)}
             />
             <CustomButton 
                 text="Renvoyer le code" 

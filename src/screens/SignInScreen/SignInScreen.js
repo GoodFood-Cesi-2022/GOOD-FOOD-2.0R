@@ -1,23 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Switch } from 'react-native';
 import React, {useState} from 'react';
 import logoGf from '../../../assets/images/logo-Good-Food.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
-import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
+// import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
+import {useForm, Controller, watch} from 'react-hook-form';
 
 const SignInScreen = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
     const {height} = useWindowDimensions();
     const navigation = useNavigation();
+    const [rememberMe, setRememberMe] = useState(false);
 
-    const OnSignInPressed = () => {
-        // Validate user
+    const {
+        control, 
+        handleSubmit,
+        watch,
+        formState: {errors}
+    } = useForm();
+    console.log(errors);
+
+     // Function when switch is used
+    const toggleSwitch = () => {
+        setRememberMe(rememberMe => !rememberMe);
+    };
+    console.log("L'état du toggle rememberMe est " + rememberMe);
+
+    // --------------------End Switch logic
+
+    const OnSignInPressed = (data) => {
+        console.log(data);
+        // Validate user then
         navigation.navigate('HomeScreen');
     }
     const OnSignUpPressed = () => {
+        // Validate user then
         navigation.navigate('SignUp');
     }
     const OnForgotPasswordPressed = () => {
@@ -26,35 +43,53 @@ const SignInScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-            <Image source={logoGf} style={[styles.logo, {height: height * 0.3}]} resizeMode='contain' />
-            <CustomInput
-                placeholder="Username"
-                value={username}
-                setValue={setUsername}
-                secureTextEntry={false}
+            <Image 
+                source={logoGf} 
+                style={[styles.logo, 
+                {height: height * 0.3}]} 
+                resizeMode='contain' 
             />
             <CustomInput
+                name="username"
+                placeholder= "Username"
+                secureTextEntry={false}
+                control={control}
+                rules= {{required: "Le nom d'utilisateur est requis"}}
+            />
+            <CustomInput
+                name="password"
                 placeholder="Password"
-                value={password}
-                setValue={setPassword}
                 secureTextEntry={true}
+                control={control}
+                rules= {{required:  "Le mot de passe est requis"}}
             />
             <CustomButton 
                 text="Se connecter" 
-                onPress={OnSignInPressed}
+                onPress={handleSubmit(OnSignInPressed)}
             />
-            <CustomButton 
-                text="Mot de passe oublié ?" 
-                onPress={OnForgotPasswordPressed} 
-                type="TERTIARY" 
-            />
-            <SocialSignInButtons />
-            <CustomButton 
-                text="Vous n'avez pas de compte ? Crééz en un !" 
-                onPress={OnSignUpPressed} 
-                type="TERTIARY"
-                bgColor="transparent"
-            />
+            <View style={styles.switchContainer}>
+                <Switch
+                    value =  {rememberMe}
+                    onValueChange = {toggleSwitch}
+                    trackColor={{ false: "#767577", true: "#81b0ff" }}
+                />
+                <Text style={styles.switchText}>Se souvenir de moi</Text>
+            </View>
+            <View style={styles.footerContainer}>
+                <CustomButton 
+                    text="Mot de passe oublié ?" 
+                    onPress={OnForgotPasswordPressed} 
+                    type="TERTIARY" 
+                />
+                {/* Connection by Facebook/Google/Apple for future development */}
+                {/* <SocialSignInButtons /> */}
+                <CustomButton 
+                    text="Vous n'avez pas de compte ? Crééz en un !" 
+                    onPress={OnSignUpPressed} 
+                    type="TERTIARY"
+                    bgColor="transparent"
+                />
+            </View>
         </View>
     </ScrollView>
   )
@@ -64,16 +99,29 @@ const styles = StyleSheet.create({
     root:{
         alignItems:'center',
         padding: "20%",
-        margin:-35,
+        marginHorizontal:-50,
+        marginVertical:0,
     },
     logo:{
         width:'50%',
         minWidth:300,
         maxWidth:300,
         maxHeight:300,
-        marginTop:5,
-        marginBottom:20,
-    }
+        marginBottom:10,
+    },
+    footerContainer:{
+        alignItems:'center',
+        justifyContent:'center',
+        height:200,
+    },
+    switchContainer:{
+        flexDirection:'row',
+        justifyContent: 'space-around',
+        width:'50%',
+    },
+    switchText:{
+        marginTop:15,
+    },
 })
 
 export default SignInScreen;

@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     },
     container_TERTIARY:{
         borderWidth:0,
-        marginBottom:10,
     },
     text:{
         fontWeight:'bold',

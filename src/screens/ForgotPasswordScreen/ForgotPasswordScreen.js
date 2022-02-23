@@ -5,14 +5,17 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
 
 
 const ForgotPasswordScreen = () => {
+    const {control, handleSubmit} = useForm();
     const [username, setUsername] = useState("");
 
     const navigation = useNavigation();
 
-    const OnEnvoyerPressed = () => {
+    const OnEnvoyerPressed = (data) => {
+        console.log(data);
         navigation.navigate('NewPassword');
     }
     const OnBackSignInPressed = () => {
@@ -23,14 +26,17 @@ const ForgotPasswordScreen = () => {
         <View style={styles.root}>
             <Text style={styles.title}>Mot de passe oublié</Text>
             <CustomInput
-                placeholder="Username *"
-                value={username}
-                setValue={setUsername}
+                name="username"
+                control={control}
+                placeholder="Username"
                 secureTextEntry={false}
+                rules={{
+                    required: "Le nom d'utilisateur est requis"
+                }}
             />
             <CustomButton 
                 text="Envoyer" 
-                onPress={OnEnvoyerPressed}
+                onPress={handleSubmit(OnEnvoyerPressed)}
             />
             <CustomButton 
                 text="Retour à la page login !" 

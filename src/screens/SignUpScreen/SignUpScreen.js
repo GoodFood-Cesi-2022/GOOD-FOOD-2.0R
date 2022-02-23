@@ -5,17 +5,20 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
+
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const SignUpScreen = () => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordRepeat, setPasswordRepeat] = useState("");
-
+    const {control, handleSubmit, watch} = useForm();
+    const pwd = watch('password');
     const navigation = useNavigation();
 
     const OnSignUpPressed = () => {
         navigation.navigate('ConfirmEmail');
+    }
+    const OnSignInPressed = () => {
+        navigation.navigate('SignIn');
     }
     const OnCGUPressed = () => {
         console.log("Voici les CGU !");
@@ -28,38 +31,63 @@ const SignUpScreen = () => {
         <View style={styles.root}>
             <Text style={styles.title}>Créer un compte</Text>
             <CustomInput
+                name="username"
+                control={control}
                 placeholder="Username"
-                value={username}
-                setValue={setUsername}
+                rules={
+                    {
+                    required: "Le nom d'utilisateur est requis", 
+                    minLength:{
+                        value:6, 
+                        message: "Le nom d'utilisateur doit contenir 6 caractères minimum"},
+                    maxLength:{
+                        value:24, 
+                        message: "Le nom d'utilisateur doit contenir 24 caractères maximum"},
+                    }
+                }
                 secureTextEntry={false}
             />
             <CustomInput
+                name="email"
+                control={control}
                 placeholder="Email"
-                value={email}
-                setValue={setEmail}
+                rules={{pattern: {value: EMAIL_REGEX, message: "L'email est incorrect"}}}
                 secureTextEntry={false}
             />
             <CustomInput
+                name="password"
+                control={control}
                 placeholder="Password"
-                value={password}
-                setValue={setPassword}
                 secureTextEntry={true}
+                rules={{
+                    required: "Le mot de passe est requis", 
+                    minLength:{
+                        value:8, 
+                        message: "Le mot de passe doit contenir 8 caractères minimum"},
+                    maxLength:{
+                        value:24, 
+                        message: "Le mot de passe doit contenir 24 caractères maximum"},
+                    }}
+                
             />
             <CustomInput
+                name="password-repeat"
+                control={control}
                 placeholder="Repeat password"
-                value={passwordRepeat}
-                setValue={setPasswordRepeat}
                 secureTextEntry={true}
+                rules={{
+                    validate: value => value == pwd || "Le mot de passe ne correspond pas au premier !",
+                }}
             />
             <CustomButton 
                 text="S'enregistrer" 
-                onPress={OnSignUpPressed}
+                onPress={handleSubmit(OnSignUpPressed)}
             />
             <Text style={styles.text}>En vous enregistrant, vous confirmez l'acceptation de nos <Text style={styles.link} onPress={OnCGUPressed}>CGU</Text> ainsi que notre <Text style={styles.link} onPress={OnRGPDPressed}>politique RGPD</Text>.</Text>
             <SocialSignInButtons />
             <CustomButton 
                 text="Vous avez un compte ? Connectez vous !" 
-                onPress={OnSignUpPressed} 
+                onPress={OnSignInPressed} 
                 type="TERTIARY"
             />
         </View>

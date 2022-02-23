@@ -5,14 +5,15 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
 
 const NewPasswordScreen = () => {
-    const [code, setCode] = useState("");
-    const [newPassword, setNewPassword] = useState("");
+    const {control, handleSubmit} = useForm();
 
     const navigation = useNavigation();
 
-    const OnEnvoyerPressed = () => {
+    const OnEnvoyerPressed = (data) => {
+        console.log(data);
         navigation.navigate('HomeScreen');
     }
     const OnBackSignInPressed = () => {
@@ -23,20 +24,32 @@ const NewPasswordScreen = () => {
         <View style={styles.root}>
             <Text style={styles.title}>Changez votre mot de passe</Text>
             <CustomInput
-                placeholder="Code reçu par mail *"
-                value={code}
-                setValue={setCode}
+                name="code"
+                control={control}
+                placeholder="Code reçu par mail"
                 secureTextEntry={true}
+                rules={{
+                    required: "Le code est requis"
+                }}
             />
             <CustomInput
-                placeholder="Nouveau mot de passe *"
-                value={newPassword}
-                setValue={setNewPassword}
+                name="new-password"
+                control={control}
+                placeholder="Nouveau mot de passe"
                 secureTextEntry={true}
+                rules={{
+                    required: "Votre nouveau mot de passe est requis", 
+                    minLength:{
+                        value:8, 
+                        message: "Le mot de passe doit contenir 8 caractères minimum"},
+                    maxLength:{
+                        value:24, 
+                        message: "Le mot de passe doit contenir 24 caractères maximum"},
+                }}
             />
             <CustomButton 
                 text="Envoyer" 
-                onPress={OnEnvoyerPressed}
+                onPress={handleSubmit(OnEnvoyerPressed)}
             />
             <CustomButton 
                 text="Retour à la page login !" 
