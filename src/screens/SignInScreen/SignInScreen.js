@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent: 'space-around',
         width:'50%',
+        marginBottom:-50,
     },
     switchText:{
         marginTop:15,
