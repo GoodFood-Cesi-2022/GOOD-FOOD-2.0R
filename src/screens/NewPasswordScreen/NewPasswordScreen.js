@@ -52,7 +52,7 @@ const NewPasswordScreen = () => {
                 onPress={handleSubmit(OnEnvoyerPressed)}
             />
             <CustomButton 
-                text="Retour à la page login !" 
+                text="Retour à la page de connexion !" 
                 onPress={OnBackSignInPressed} 
                 type="TERTIARY"
             />

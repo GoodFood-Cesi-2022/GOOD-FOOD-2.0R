@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, useWindowDimensions, ScrollView } from 'react-n
 import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
-import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
+// import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 
@@ -33,7 +33,7 @@ const SignUpScreen = () => {
             <CustomInput
                 name="username"
                 control={control}
-                placeholder="Username"
+                placeholder="Nom d'utlisateur"
                 rules={
                     {
                     required: "Le nom d'utilisateur est requis", 
@@ -57,7 +57,7 @@ const SignUpScreen = () => {
             <CustomInput
                 name="password"
                 control={control}
-                placeholder="Password"
+                placeholder="Mot de passe"
                 secureTextEntry={true}
                 rules={{
                     required: "Le mot de passe est requis", 
@@ -73,7 +73,7 @@ const SignUpScreen = () => {
             <CustomInput
                 name="password-repeat"
                 control={control}
-                placeholder="Repeat password"
+                placeholder="Confirmez votre mot de passe"
                 secureTextEntry={true}
                 rules={{
                     validate: value => value == pwd || "Le mot de passe ne correspond pas au premier !",
@@ -84,7 +84,7 @@ const SignUpScreen = () => {
                 onPress={handleSubmit(OnSignUpPressed)}
             />
             <Text style={styles.text}>En vous enregistrant, vous confirmez l'acceptation de nos <Text style={styles.link} onPress={OnCGUPressed}>CGU</Text> ainsi que notre <Text style={styles.link} onPress={OnRGPDPressed}>politique RGPD</Text>.</Text>
-            <SocialSignInButtons />
+            {/* <SocialSignInButtons /> */}
             <CustomButton 
                 text="Vous avez un compte ? Connectez vous !" 
                 onPress={OnSignInPressed} 

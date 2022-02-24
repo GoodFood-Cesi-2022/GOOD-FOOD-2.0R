@@ -51,14 +51,14 @@ const SignInScreen = () => {
             />
             <CustomInput
                 name="username"
-                placeholder= "Username"
+                placeholder= "Nom d'utilisateur"
                 secureTextEntry={false}
                 control={control}
                 rules= {{required: "Le nom d'utilisateur est requis"}}
             />
             <CustomInput
                 name="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 secureTextEntry={true}
                 control={control}
                 rules= {{required:  "Le mot de passe est requis"}}
@@ -84,7 +84,7 @@ const SignInScreen = () => {
                 {/* Connection by Facebook/Google/Apple for future development */}
                 {/* <SocialSignInButtons /> */}
                 <CustomButton 
-                    text="Vous n'avez pas de compte ? Crééz en un !" 
+                    text="Créer un compte !" 
                     onPress={OnSignUpPressed} 
                     type="TERTIARY"
                     bgColor="transparent"
