@@ -4,7 +4,6 @@ import {Controller} from 'react-hook-form';
 
 const CustomInput = ({control, name, placeholder, secureTextEntry, rules = {}}) => {
   return (
-    
       <Controller 
         control={control}
         name={name}
