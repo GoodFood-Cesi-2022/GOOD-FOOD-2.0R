@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@faker-js/faker": "^6.0.0-alpha.7",
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.39",
     "@types/react-native": "^0.66.16",
