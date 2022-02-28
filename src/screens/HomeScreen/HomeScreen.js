@@ -1,5 +1,6 @@
 import { StyleSheet, Text, ScrollView, Image, View } from 'react-native';
 import React from 'react';
+import { withSafeAreaInsets } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
   const { faker } = require('@faker-js/faker');
@@ -55,12 +56,12 @@ const HomeScreen = () => {
       const imageUrl = "https://baconmockup.com/250/250";
       return (
           <>
-            <View style={[styles.contractorsContainer, styles.shadow]}>
+            <View style={styles.contractorsContainer}>
               <Image style={styles.image} source={{uri: imageUrl}} />
               <Text style={styles.text}>Restaurant {contractorItem.name}</Text>
               <Text style={styles.text}>Tél. : {contractorItem.phone_number}</Text>
               <Text />
-            </View>
+          </View>
           </>
         );
     });
@@ -69,8 +70,11 @@ const HomeScreen = () => {
   };
 
   return (
-    <ScrollView showsHorizontalScrollIndicator={false}>
-    {contractorsData()}
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.root}>
+        <Text style={[styles.text, styles.title]}>Notre sélection proche de chez vous !</Text>
+        {contractorsData()}
+      </View>
     </ScrollView>
   )
 }
@@ -78,33 +82,37 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
+  root:{
+    backgroundColor:"#FAF5FF",
+  }
+  ,
   contractorsContainer:{
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(229, 228, 241, 0.7)',
     borderRadius: 8,
-    paddingVertical: 45,
-    paddingHorizontal: 25,
-    maxWidth: '100%',
+    maxWidth: '80%',
+    maxHeight: 350,
+    paddingVertical:20,
     margin: 10,
     alignItems:"center",
+    justifyContent:"center",
+    marginHorizontal:"10%"
   },
-  shadow:{
-    elevation: 11,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-  },
+ 
   image:{
-    height:250, 
-    width:250,  
-    marginBottom:10
+    height:200, 
+    width:200,  
+    marginBottom:10,
+    borderRadius: 30
   }
   ,
   text:{
     fontSize:18,
-    fontWeight:"bold"
+    fontWeight:"bold",
+    color:"black",
+  },
+  title:{
+    color:"#111112",
+    fontSize:32,
+    textAlign:"center",
   }
 })
