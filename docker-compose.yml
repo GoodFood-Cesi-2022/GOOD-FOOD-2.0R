@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  doc:
+    build:
+      context: ./
+      dockerfile: ./good-food-mobile-technical-documentation/Dockerfile
+    image: goodfood-mobile-doc
+    container_name: goodfood-mobile-doc
+    restart: unless-stopped
+    working_dir: /docs
+    volumes:
+      - ./good-food-mobile-technical-documentation:/docs
+    ports:
+      - 8012:8000
+  mobile:
+    build:
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./:/workspace
+      - nodemodules:/workspace/node_modules
+    ports:
+      - 19000:19000
+      - 19001:19001
+      - 19002:19002
+      - 19006:19006
+      - 8095:8095
+    networks:
+      - goodfood
+
+volumes:
+  nodemodules: {}
+
+networks:
+  goodfood:
+    name: goodfood
+    driver: bridge
