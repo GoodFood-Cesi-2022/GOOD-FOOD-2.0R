@@ -3,12 +3,14 @@ import { Platform, Text, View, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
 
 export default function App() {
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState();
+  const [longitude, setLongitude] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [status, requestPermission] = Location.useBackgroundPermissions();
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     (async () => {
-      Location.enableNetworkProviderAsync();
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
@@ -17,17 +19,16 @@ export default function App() {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+      setLatitude(JSON.stringify(location.coords.latitude));
+      setLongitude(JSON.stringify(location.coords.longitude));
     })();
   }, []);
 
   let text = 'Waiting..';
   if (errorMsg) {
     text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location.coords);
   }
-  let latitude = JSON.stringify(location.coords.latitude);
-  let longitude = JSON.stringify(location.coords.longitude);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>{longitude}</Text>

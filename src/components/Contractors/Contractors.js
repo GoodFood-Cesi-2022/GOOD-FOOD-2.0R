@@ -50,6 +50,38 @@ const Contractors = () => {
             "avatar": faker.image.avatar()
         }];
 
+    let contractors_adresses = [
+      {
+        "id": 1,
+        "first_line": faker.address.streetName(),
+        "second_line": faker.address.secondaryAddress(),
+        "zip_code": faker.address.zipCode(),
+        "country": faker.address.country(),
+        "city": faker.address.cityName(),
+        "lat": faker.address.latitude(),
+        "lng": faker.address.longitude()
+      },
+      {
+        "id": 2,
+        "first_line": faker.address.streetName(),
+        "second_line": faker.address.secondaryAddress(),
+        "zip_code": faker.address.zipCode(),
+        "country": faker.address.country(),
+        "city": faker.address.cityName(),
+        "lat": faker.address.latitude(),
+        "lng": faker.address.longitude()
+      },
+      {
+        "id": 3,
+        "first_line": faker.address.streetName(),
+        "second_line": faker.address.secondaryAddress(),
+        "zip_code": faker.address.zipCode(),
+        "country": faker.address.country(),
+        "city": faker.address.cityName(),
+        "lat": faker.address.latitude(),
+        "lng": faker.address.longitude()
+      },
+    ]
     const contractorsData = () => {
         let result = contractors.map(function(contractorItem, index) {
         const imageUrl = "https://baconmockup.com/250/250";
@@ -59,6 +91,26 @@ const Contractors = () => {
                     <Image style={styles.image} source={{uri: imageUrl}} />
                     <Text style={styles.text}>Restaurant {contractorItem.name}</Text>
                     <Text style={styles.text}>Tél. : {contractorItem.phone_number}</Text>
+                    <Text />
+                </View>
+            </>
+            );
+        });
+
+        return result;
+    };
+
+    const contractorsAdresses = () => {
+      let result = contractors.map(function(contractorAdress, index) {
+        return (
+            <>
+                <View  key={index} style={styles.contractorsContainer}>
+                    <Image style={styles.image} source={{uri: imageUrl}} />
+                    <Text style={styles.text}>Ville {contractorAdress.first_line}</Text>
+                    if({contractorAdress.second_line}){
+                      <Text style={styles.text}>Ville {contractorAdress.second_line}</Text>
+                    }
+                    <Text style={styles.text}>Rayon de livraison : {contractorAdress.max_delivery_radius} km</Text>
                     <Text />
                 </View>
             </>
