@@ -9,7 +9,7 @@ const HomeScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
-        <Text style={[styles.text, styles.title]}>Notre sélection proche de chez vous !</Text>
+        <Text style={[styles.text, styles.title]}>Les restaurants près de chez vous !</Text>
         <Location/>
         <Contractors/>
       </View>
