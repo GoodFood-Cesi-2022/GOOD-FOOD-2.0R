@@ -3,6 +3,7 @@ import React from 'react';
 
 const Contractors_entities = () => {
     const { faker } = require('@faker-js/faker');
+    faker.setLocale('fr');
     let contractors_entities =[
         {
             "id": 1,

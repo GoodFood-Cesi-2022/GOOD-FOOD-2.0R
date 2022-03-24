@@ -21,7 +21,6 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
   root:{
-    backgroundColor:"#FAF5FF",
   }
   ,
   text:{
@@ -33,5 +32,6 @@ const styles = StyleSheet.create({
     color:"#111112",
     fontSize:32,
     textAlign:"center",
+    marginTop: 30,
   }
 })
