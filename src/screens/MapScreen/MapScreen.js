@@ -30,8 +30,8 @@ const MapScreen = (props) => {
          style={{ flex: 1 }}
          showsUserLocation
          initialRegion={{
-         latitude: latitude,
-         longitude: longitude,
+         latitude: latitude ? latitude : 45.1666700,
+         longitude: longitude ? longitude : 5.7166700,
          latitudeDelta: 0.0922,
          longitudeDelta: 0.0421}}
       />
