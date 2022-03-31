@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Switch } from 'react-native';
 import React, {useState} from 'react';
-import logoGf from '../../../assets/images/logo-Good-Food.png';
+import logoGf from '../../../assets/logo-Good-Food.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 // import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';

@@ -1,16 +1,21 @@
-import { StyleSheet, Text, ScrollView, Image, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, Button, View } from 'react-native';
 import React from 'react';
 import Contractors from '../../components/Contractors/Contractors';
-import Location from '../../components/Location/Location';
+import UserLocation from '../../components/UserLocation/UserLocation';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
-  
+  const navigation = useNavigation();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
         <Text style={[styles.text, styles.title]}>Les restaurants près de chez vous !</Text>
-        <Location/>
+        <Button
+          title="Voir la carte"
+          onPress={() => navigation.navigate('MapScreen')}
+        />
+        <UserLocation/>
         <Contractors/>
       </View>
     </ScrollView>
