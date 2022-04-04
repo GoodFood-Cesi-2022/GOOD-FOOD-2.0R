@@ -10,8 +10,6 @@ export default function UserLocation(props) {
   const [status, requestPermission] = ("");
   const [errorMsg, setErrorMsg] = useState(null);
 
-  
-
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
