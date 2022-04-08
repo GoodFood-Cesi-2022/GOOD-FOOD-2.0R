@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import {MapView, Marker } from 'react-native-maps';
 import UserLocation from '../../components/UserLocation/UserLocation';
 
 const MapScreen = (props) => {
   const { faker } = require('@faker-js/faker');
   faker.setLocale('fr');
-
+  
   const [region, setRegion] = useState({
     latitude: 45.2022863,
     longitude: 5.7731590,

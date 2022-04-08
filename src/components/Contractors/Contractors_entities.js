@@ -84,37 +84,28 @@ const Contractors_entities = () => {
         ];
 
     const contractorsData = () => {
-        const imageUrl = "https://baconmockup.com/250/250";
+        const imageUrl = faker.image.food(300, 200, true);
         return (
             <>
                 <View style={styles.main}>
-                    <Image style={styles.image} source={{uri: imageUrl}} />
                     <View  key={contractors_entities[0].id} style={styles.contractorsContainer}>
+                        <Image style={styles.image} source={{uri: imageUrl}} />
                         <View style={styles.textOverflow}>
                             <Text style={styles.text}>Restaurant {contractors_entities[0].name}</Text>
-                            <Text style={styles.text}>{contractors_adresses[0].zip_code + " " + contractors_adresses[0].city}</Text>
-                            <Text style={styles.text}>Rayon de livraison : {contractors_entities[0].max_delivery_radius} km</Text>
-                            <Text style={styles.text}>Tél. : {contractors_entities[0].phone_number}</Text>
                         </View>
                         <Text />
                     </View>
-                    <Image style={styles.image} source={{uri: imageUrl}} />
                     <View  key={contractors_entities[1].id} style={styles.contractorsContainer}>
+                        <Image style={styles.image} source={{uri: imageUrl}} />
                         <View style={styles.textOverflow}>
                             <Text style={styles.text}>Restaurant {contractors_entities[1].name}</Text>
-                            <Text style={styles.text}>{contractors_adresses[1].zip_code + " " + contractors_adresses[1].city}</Text>
-                            <Text style={styles.text}>Rayon de livraison : {contractors_entities[1].max_delivery_radius} km</Text>
-                            <Text style={styles.text}>Tél. : {contractors_entities[1].phone_number}</Text>
                         </View>
                         <Text />
                     </View>
-                    <Image style={styles.image} source={{uri: imageUrl}} />
                     <View  key={contractors_entities[2].id} style={styles.contractorsContainer}>
+                        <Image style={styles.image} source={{uri: imageUrl}} />
                         <View style={styles.textOverflow}>
                             <Text style={styles.text}>Restaurant {contractors_entities[2].name}</Text>
-                            <Text style={styles.text}>{contractors_adresses[2].zip_code + " " + contractors_adresses[2].city}</Text>
-                            <Text style={styles.text}>Rayon de livraison : {contractors_entities[2].max_delivery_radius} km</Text>
-                            <Text style={styles.text}>Tél. : {contractors_entities[2].phone_number}</Text>
                         </View>
                         <Text />
                     </View>
@@ -139,18 +130,16 @@ const styles = StyleSheet.create({
     main:{
         marginTop:30,
         alignItems:"center",
+        flexDirection:'column',
+        width:'100%',
     },
     contractorsContainer:{
-        flexDirection:'column',
         paddingVertical:20,
-        maxWidth:'100%'
+        width: '100%',
     },
     image:{
         height:200,
-        width:200,  
         marginBottom:10,
-        marginLeft:20,
-        borderRadius: 30,
     },
     text:{
         fontSize:18,
@@ -158,10 +147,8 @@ const styles = StyleSheet.create({
         color:"black",
     },
     textOverflow:{
-        maxWidth:"60%",
-        position:"relative",
-        marginRight:0,
-        marginTop:-80,
-        backgroundColor:"white",
+        width:200,
+        height:50,
+        right:0,
     }
 })
