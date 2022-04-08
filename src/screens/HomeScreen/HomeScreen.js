@@ -8,17 +8,20 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.root}>
-        <Text style={[styles.text, styles.title]}>Les restaurants près de chez vous !</Text>
-        <Button
-          title="Voir la carte"
-          onPress={() => navigation.navigate('MapScreen')}
-        />
-        <UserLocation/>
-        <Contractors/>
-      </View>
-    </ScrollView>
+    <>
+      
+      <ScrollView contentContainerStyle={styles.root} showsVerticalScrollIndicator={false}>
+        <View style={{ flex: 1}}>
+          <Text style={[styles.text, styles.title]}>Les restaurants près de chez vous !</Text>
+          <Button
+            title="Voir la carte"
+            onPress={() => navigation.navigate('MapScreen')}
+          />
+          <UserLocation/>
+          <Contractors/>
+        </View>
+      </ScrollView>
+    </>
   )
 }
 
@@ -26,6 +29,8 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
   root:{
+    alignItems: 'center',
+    justifyContent: 'center'
   }
   ,
   text:{
@@ -37,6 +42,5 @@ const styles = StyleSheet.create({
     color:"#111112",
     fontSize:32,
     textAlign:"center",
-    marginTop: 30,
   }
 })
