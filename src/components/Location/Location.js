@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Platform,Button, Text, View, StyleSheet } from 'react-native';
+import { Platform, Text, View, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
 
-export default function UserLocation(props) {
+export default function App() {
   const [location, setLocation] = useState();
-  const [longitude, setLongitude] = useState("");
-  const [latitude, setLatitude] = useState("");
+  // const [longitude, setLongitude] = useState("");
+  // const [latitude, setLatitude] = useState("");
   const [address, setAddress] = useState("");
   const [status, requestPermission] = ("");
   const [errorMsg, setErrorMsg] = useState(null);
@@ -20,8 +20,8 @@ export default function UserLocation(props) {
 
       let locationRequest = await Location.getCurrentPositionAsync({});
       setLocation(locationRequest);
-      setLongitude(JSON.stringify(locationRequest['coords'].longitude));
-      setLatitude(JSON.stringify(locationRequest['coords'].latitude));
+      // setLongitude(JSON.stringify(locationRequest['coords'].longitude));
+      // setLatitude(JSON.stringify(locationRequest['coords'].latitude));
 
       let reqUserAddress = await Location.reverseGeocodeAsync(locationRequest['coords']);
       setAddress(reqUserAddress[0].name + ", " + reqUserAddress[0].street + " " + reqUserAddress[0].postalCode + " " + reqUserAddress[0].city);
