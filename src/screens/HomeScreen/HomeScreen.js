@@ -3,13 +3,14 @@ import React from 'react';
 import Contractors from '../../components/Contractors/Contractors';
 import UserLocation from '../../components/UserLocation/UserLocation';
 import { useNavigation } from '@react-navigation/native';
+import Header from  '../../components/Header/Header';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
     <>
-      
+      <Header />
       <ScrollView contentContainerStyle={styles.root} showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1}}>
           <Text style={[styles.text, styles.title]}>Les restaurants près de chez vous !</Text>

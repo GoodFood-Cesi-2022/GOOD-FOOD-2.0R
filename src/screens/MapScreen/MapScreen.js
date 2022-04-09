@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import UserLocation from '../../components/UserLocation/UserLocation';
+import Header from  '../../components/Header/Header';
 
 const MapScreen = (props) => {
   const { faker } = require('@faker-js/faker');
@@ -62,6 +63,7 @@ const MapScreen = (props) => {
     ;
   return(
     <>
+      <Header />
       <UserLocation />
       <MapView
         style={{ flex: 1 }}
