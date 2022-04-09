@@ -1,14 +1,15 @@
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-const Header = () => {
+const Header = (props) => {
+    const navigation = useNavigation();
     
   return (
     <View style={styles.header_container}>       
         <TouchableOpacity
             style={styles.button}
-            onPress={ () => alert('Back !')}
+            onPress={() => navigation.goBack()}
         >
             <Text style={styles.text_button}>Back</Text>
         </TouchableOpacity>
@@ -16,12 +17,6 @@ const Header = () => {
             style={styles.tinyLogo}
             source={require('../../../assets/tiny_logo_good_food.png')}
         />
-        <TouchableOpacity
-            style={styles.button}
-            onPress={ () => alert('Next !')}
-        >
-            <Text style={styles.text_button}>Next</Text>
-        </TouchableOpacity>
     </View>
   )
 }

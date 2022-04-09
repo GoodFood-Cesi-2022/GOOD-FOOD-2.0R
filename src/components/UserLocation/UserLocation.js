@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Platform,Button, Text, View, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
 
-export default function UserLocation(props) {
+export default function UserLocation() {
   const [location, setLocation] = useState();
   const [longitude, setLongitude] = useState("");
   const [latitude, setLatitude] = useState("");
@@ -37,8 +37,6 @@ export default function UserLocation(props) {
 
     return (
       <View style={styles.container}>
-        {/* <Text style={styles.paragraph}>La longitude est {longitude}</Text>
-        <Text style={styles.paragraph}>La latitude est {latitude}</Text> */}
         <Text style={styles.paragraph}>Votre adresse est :</Text>
         <Text>{address}</Text>
       </View>
