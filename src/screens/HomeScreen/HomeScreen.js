@@ -1,4 +1,4 @@
-import { StyleSheet, Text, ScrollView, Button, View, Image } from 'react-native';
+import { StyleSheet, Text, ScrollView, Button, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import Contractors from '../../components/Contractors/Contractors';
 import UserLocation from '../../components/UserLocation/UserLocation';
@@ -9,10 +9,18 @@ const HomeScreen = () => {
 
   return (
     <>
+    <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
       <Image 
           style={styles.tinyLogo}
           source={require('../../../assets/tiny_logo_good_food.png')}
       />
+      <TouchableOpacity onPress={() => navigation.navigate('AccountScreen')}>
+          <Image 
+              style={styles.tinyLogo}
+              source={require('../../../assets/account.png')}
+          />
+      </TouchableOpacity>
+    </View>
       <ScrollView contentContainerStyle={styles.root} showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1}}>
           <Text style={[styles.text, styles.title]}>Les restaurants près de chez vous !</Text>
@@ -48,6 +56,7 @@ const styles = StyleSheet.create({
   },
   tinyLogo:{
     marginTop:30,
-    alignSelf:'center'
+    width:40,
+    height:40,
   }
 })
