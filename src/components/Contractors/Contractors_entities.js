@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const Contractors_entities = () => {
     const { faker } = require('@faker-js/faker');
@@ -82,43 +83,40 @@ const Contractors_entities = () => {
             "lng": faker.address.longitude()
         },
         ];
-
-    const contractorsData = () => {
+    
+    const renderContractors = contractors_entities.map(contractor => {
         const imageUrl = faker.image.food(300, 200, true);
-        return (
+        const navigation = useNavigation();
+        return(
             <>
-                <View style={styles.main}>
-                    <View  key={contractors_entities[0].id} style={styles.contractorsContainer}>
-                        <Image style={styles.image} source={{uri: imageUrl}} />
-                        <View style={styles.textOverflow}>
-                            <Text style={styles.text}>Restaurant {contractors_entities[0].name}</Text>
-                        </View>
-                        <Text />
+                <View 
+                key={contractor.id} 
+                style={styles.contractorsContainer}
+                >
+                    <Image style={styles.image} source={{uri: imageUrl}} />
+                    <View style={styles.textOverflow}>
+                        <Text 
+                        style={styles.text} 
+                        onStartShouldSetResponder={() => navigation.navigate('ContractorScreen',{
+                            contractorName: contractor.name,
+                            contractorAvatar: contractor.avatar,
+                            contractorPhoneNumber: contractor.phone_number,
+                        })}>
+                            Restaurant {contractor.name}
+                        </Text>
                     </View>
-                    <View  key={contractors_entities[1].id} style={styles.contractorsContainer}>
-                        <Image style={styles.image} source={{uri: imageUrl}} />
-                        <View style={styles.textOverflow}>
-                            <Text style={styles.text}>Restaurant {contractors_entities[1].name}</Text>
-                        </View>
-                        <Text />
-                    </View>
-                    <View  key={contractors_entities[2].id} style={styles.contractorsContainer}>
-                        <Image style={styles.image} source={{uri: imageUrl}} />
-                        <View style={styles.textOverflow}>
-                            <Text style={styles.text}>Restaurant {contractors_entities[2].name}</Text>
-                        </View>
-                        <Text />
-                    </View>
+                    <Text />
                 </View>
             </>
-        );
-    };
-    
+        )
+    });
 
     return (
         <View style={styles.container_contractors_entities}>
             <>
-                {contractorsData()}
+                <View style={styles.main}>
+                    {renderContractors}
+                </View>
             </>
         </View>
     )

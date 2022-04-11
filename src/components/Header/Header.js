@@ -13,10 +13,12 @@ const Header = (props) => {
         >
             <Text style={styles.text_button}>Back</Text>
         </TouchableOpacity>
-        <Image 
-            style={styles.tinyLogo}
-            source={require('../../../assets/tiny_logo_good_food.png')}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <Image 
+                style={styles.tinyLogo}
+                source={require('../../../assets/tiny_logo_good_food.png')}
+            />
+        </TouchableOpacity>
     </View>
   )
 }
@@ -37,7 +39,9 @@ const styles = StyleSheet.create({
         marginBottom:20,
     },
     tinyLogo:{
-        marginTop:-10
+        marginTop:-10,
+        width:40,
+        height:40,
     },
     button:{
         width:40,

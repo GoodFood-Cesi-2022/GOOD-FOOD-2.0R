@@ -7,13 +7,16 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
+    "buffer": "^6.0.3",
     "expo": "~44.0.0",
     "expo-location": "~14.0.1",
+    "expo-random": "~12.1.1",
     "expo-status-bar": "~1.2.0",
     "moment": "^2.29.2",
     "react": "17.0.1",
@@ -31,7 +34,8 @@
     "@types/jest": "^27.4.0",
     "@types/react": "^17.0.39",
     "@types/react-native": "^0.66.16",
-    "@types/react-test-renderer": "^17.0.1"
+    "@types/react-test-renderer": "^17.0.1",
+    "jest": "^27.5.1"
   },
   "private": true
 }

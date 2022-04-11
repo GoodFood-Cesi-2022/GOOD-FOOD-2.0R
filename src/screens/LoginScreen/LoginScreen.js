@@ -3,21 +3,10 @@ import React, {useState} from 'react';
 import logoGf from '../../../assets/logo-Good-Food.png';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { useNavigation } from '@react-navigation/native';
-import {useForm, Controller, watch} from 'react-hook-form';
 
 const SignInScreen = () => {
     const {height} = useWindowDimensions();
     const navigation = useNavigation();
-
-    const {
-        control, 
-        handleSubmit,
-        watch,
-        formState: {errors}
-    } = useForm();
-    if (errors) {
-        console.log("SignIn errors : " + errors);
-    }
 
     // --------------------End Switch logic
 
@@ -34,7 +23,7 @@ const SignInScreen = () => {
         />
         <CustomButton 
             text="Se connecter" 
-            onPress={handleSubmit(OnSignInPressed)}
+            onPress={OnSignInPressed}
         />
     </View>
   )
