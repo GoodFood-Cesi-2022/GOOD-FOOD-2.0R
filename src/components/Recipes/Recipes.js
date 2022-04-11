@@ -1,7 +1,10 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, {useState} from 'react';
 
 const Recipes = (props) => {
+    function addToCart(){
+        return alert('Ajouté au panier !');
+    }
   return (
     <View style={styles.container}>
         <View style={styles.image_container}>
@@ -10,6 +13,9 @@ const Recipes = (props) => {
         <View style={styles.recipe_container}>
             <Text style={[styles.text, styles.recipe_name]}>{props.name}</Text>
             <Text style={[styles.text, styles.recipe_price]}>{props.price} €</Text>
+            <TouchableOpacity style={styles.add_button} onPress={addToCart}>
+                <Text style={[styles.text, styles.text_add_button]}>Ajouter</Text>
+            </TouchableOpacity>
         </View>
     </View>
   )
@@ -44,5 +50,14 @@ const styles = StyleSheet.create({
     },
     recipe_price:{
 
+    },
+    add_button:{
+        backgroundColor: '#5998C5',
+        width:80,
+        
+        marginTop:20
+    },
+    text_add_button:{
+        textAlign:'center',
     }
 })
