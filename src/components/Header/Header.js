@@ -25,6 +25,12 @@ const Header = (props) => {
                 source={require('../../../assets/cart.png')}
             />
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => alert('Cool mon compte')}>
+            <Image 
+                style={styles.tinyLogo}
+                source={require('../../../assets/account.png')}
+            />
+        </TouchableOpacity>
     </View>
   )
 }
