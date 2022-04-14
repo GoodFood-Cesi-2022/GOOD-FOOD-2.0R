@@ -1,10 +1,14 @@
-import { Image, StyleSheet, Text, View, ScrollView } from 'react-native';
-import React from 'react';
+import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity,Button} from 'react-native';
+import React, {useState} from 'react';
 import Header from '../../components/Header/Header';
 import Recipes from '../../components/Recipes/Recipes';
+import { useNavigation } from '@react-navigation/native';
 
 const ContractorScreen = ({route}) => {
     const {contractorName, contractorAvatar, contractorPhoneNumber} = route.params;
+    const [cart, updateCart] = useState([]);
+    const navigation = useNavigation();
+    console.log(cart.length);
 
     return (
         <>
@@ -22,9 +26,23 @@ const ContractorScreen = ({route}) => {
                 <Text style={[styles.text, styles.titre_section]}>Notre sélection pour vous</Text>
             </View>
             <ScrollView>
-                <Recipes name='Chicken wings' price= '3,90' />
-                <Recipes name='Bucket duo' price= '17,50' />
+                <View>
+                    <Recipes name='Chicken wings' price= '3.90' updateCart={updateCart} cart={cart} />
+                </View>
+                <View>
+                    <Recipes name='Bucket duo' price= '17.50' updateCart={updateCart} cart={cart} />
+                </View>
+                <View style={[styles.container_bottom, styles.container_button_order]}>
+                    <Text 
+                    style={styles.title_button} 
+                    onStartShouldSetResponder={() => navigation.navigate('CartScreen',{
+                        shoppingCart: cart,
+                    })}>
+                        Commander
+                    </Text>
+                </View>
             </ScrollView>
+            
         </>
     )
 }
@@ -57,5 +75,25 @@ const styles = StyleSheet.create({
     },
     titre_section:{
         fontSize:18,
+    },
+    container_button_order:{
+        height:40,
+        width:150,
+        backgroundColor:'grey',
+        borderWidth:1,
+        padding:5
+    },
+    title_button:{
+        fontSize:16,
+        textAlign:'center',
+        fontWeight:'bold',
+        color:'white'
+    },
+    container_bottom:{
+        width:'100%',
+        height:60,
+        justifyContent:'center',
+        flexDirection:'row',
+        marginTop:30
     }
 })

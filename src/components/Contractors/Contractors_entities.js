@@ -94,7 +94,7 @@ const Contractors_entities = () => {
                 style={styles.contractorsContainer}
                 >
                     <Image style={styles.image} source={{uri: imageUrl}} />
-                    <View style={styles.textOverflow}>
+                    <View key={contractor.id} style={styles.textOverflow}>
                         <Text 
                         style={styles.text} 
                         onStartShouldSetResponder={() => navigation.navigate('ContractorScreen',{

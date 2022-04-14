@@ -1,9 +1,11 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, {useState} from 'react';
 
-const Recipes = (props) => {
-    function addToCart(){
-        return alert('Ajouté au panier !');
+const Recipes = ({name, price, updateCart, cart}) => {
+
+    function handleAddToCart(){
+        updateCart([...cart, {name, price}]);
+        console.log(cart);
     }
   return (
     <View style={styles.container}>
@@ -11,9 +13,9 @@ const Recipes = (props) => {
             <Image style={styles.image} source={{uri:'https://picsum.photos/200'}} />
         </View>
         <View style={styles.recipe_container}>
-            <Text style={[styles.text, styles.recipe_name]}>{props.name}</Text>
-            <Text style={[styles.text, styles.recipe_price]}>{props.price} €</Text>
-            <TouchableOpacity style={styles.add_button} onPress={addToCart}>
+            <Text style={[styles.text, styles.recipe_name]}>{name}</Text>
+            <Text style={[styles.text, styles.recipe_price]}>{price} €</Text>
+            <TouchableOpacity style={styles.add_button} onPress={() => {handleAddToCart()}}>
                 <Text style={[styles.text, styles.text_add_button]}>Ajouter</Text>
             </TouchableOpacity>
         </View>

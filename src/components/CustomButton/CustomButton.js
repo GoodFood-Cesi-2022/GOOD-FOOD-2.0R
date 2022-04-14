@@ -4,20 +4,23 @@ import React, {useState} from 'react'
 const CustomButton = ({onPress, text, type="PRIMARY", bgColor, fgColor }) => {
       
         return (
-          <View style={[
-              styles.container, 
-              styles[`container_${type}`],
-              bgColor ? {backgroundColor: bgColor} : {}
-            ]}>
+          <View>
             <TouchableOpacity
               onPress={onPress}
+              style={{width:200}}
             >
-                <Text style={[
-                    styles.text, 
-                    styles[`text_${type}`],
-                    fgColor ? {color: fgColor} : {}
-                    ]}>{text}
-                </Text>
+                <View style={[
+                styles.container, 
+                styles[`container_${type}`],
+                bgColor ? {backgroundColor: bgColor} : {}
+                ]}>
+                    <Text style={[
+                        styles.text, 
+                        styles[`text_${type}`],
+                        fgColor ? {color: fgColor} : {}
+                        ]}>{text}
+                    </Text>
+                </View>
             </TouchableOpacity>
           </View>
         );

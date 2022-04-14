@@ -4,9 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import MapScreen from '../screens/MapScreen/MapScreen';
-import UsersScreen from '../screens/UsersScreen/UsersScreen';
 import ContractorScreen from '../screens/ContractorScreen/ContractorScreen';
 import AccountScreen from '../screens/AccountScreen/AccountScreen';
+import CartScreen from '../screens/CartScreen/CartScreen';
 
 const Stack = createNativeStackNavigator();const StackMain = createNativeStackNavigator();
 
@@ -19,7 +19,7 @@ const Navigation = () => {
             <Stack.Screen name="ContractorScreen" component={ContractorScreen} />
             <Stack.Screen name="MapScreen" component={MapScreen}  />
             <Stack.Screen name="AccountScreen" component={AccountScreen} />
-            <Stack.Screen name="UsersScreen" component={UsersScreen} />
+            <Stack.Screen name="CartScreen" component={CartScreen} />
         </Stack.Navigator>
     </NavigationContainer>
   )

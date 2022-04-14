@@ -19,7 +19,7 @@ const Header = (props) => {
                 source={require('../../../assets/tiny_logo_good_food.png')}
             />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert('Panier !!!')}>
+        <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
             <Image 
                 style={styles.tinyLogo}
                 source={require('../../../assets/cart.png')}
