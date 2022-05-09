@@ -2,6 +2,8 @@
   "expo": {
     "name": "goodfood",
     "slug": "goodfood",
+    "scheme": "goodfood://",
+    "owner": "cuisinier05",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo-Good-Food.png",
@@ -27,6 +29,7 @@
     },
     "web": {
       "favicon": "./assets/logo-Good-Food.png"
-    }
+    },
+    "description": ""
   }
 }
