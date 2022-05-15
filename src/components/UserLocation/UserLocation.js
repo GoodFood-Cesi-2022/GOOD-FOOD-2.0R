@@ -22,10 +22,11 @@ export default function UserLocation() {
       setLocation(locationRequest);
       setLongitude(JSON.stringify(locationRequest['coords'].longitude));
       setLatitude(JSON.stringify(locationRequest['coords'].latitude));
-
+      console.log("Longitude:"+longitude);
+      console.log("Latitude:"+longitude);
       let reqUserAddress = await Location.reverseGeocodeAsync(locationRequest['coords']);
       setAddress(reqUserAddress[0].name + ", " + reqUserAddress[0].street + " " + reqUserAddress[0].postalCode + " " + reqUserAddress[0].city);
-      })();
+      });
     }, []);
 
     let text = 'Waiting..';

@@ -38,7 +38,7 @@ const ContractorScreen = ({route}) => {
                     onStartShouldSetResponder={() => navigation.navigate('CartScreen',{
                         shoppingCart: cart,
                     })}>
-                        Commander
+                        Voir mon panier
                     </Text>
                 </View>
             </ScrollView>

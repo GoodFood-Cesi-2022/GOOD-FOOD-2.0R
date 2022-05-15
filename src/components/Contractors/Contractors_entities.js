@@ -113,11 +113,7 @@ const Contractors_entities = () => {
 
     return (
         <View style={styles.container_contractors_entities}>
-            <>
-                <View style={styles.main}>
-                    {renderContractors}
-                </View>
-            </>
+            {renderContractors}
         </View>
     )
 }

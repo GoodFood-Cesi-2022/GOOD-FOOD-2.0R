@@ -1,33 +1,62 @@
 import React, {useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Linking, Button } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import LoginClassAuth from './LoginClassAuth';
-import { AuthSession } from 'expo';
+import { StyleSheet, Text, View,Modal, Linking,Pressable, Button } from 'react-native';
 import { pkceChallenge } from 'react-native-pkce-challenge';
 import axios from 'axios';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+
+
 const useMount = func => useEffect(() => func(), []);
 
 // COMPONENT DU BOUTON DE CONNEXION REGISTER
-const OpenRegisterButton = ({ registerUrl, children }) => {
-  
+const OpenRegisterButton = () => {
   function getAuthorizationCode(){
-      // const { url: initialUrl, processing } = useInitialURL();
-      const state = Math.random(40);
-      const oAuthProviderBaseUrl = 'http://localhost:8085/oauth/authorize';
-      const oAuthClientId = '962429b0-b243-4841-bbee-a8960dd9d9af';
-      const oAuthCallbackUri = 'http://localhost:19006';
-      const challenge = pkceChallenge();
+    const state = Math.ceil(Math.random(40))*1000;
+    const oAuthProviderBaseUrl = 'http://localhost:8085/oauth';
+    const oAuthCallbackUri = 'http://localhost:8085/login/redirect';
+    // const oAuthClientId = '962e63ce-3ca3-4a95-818f-2d9bb2eedc02';
+    const oAuthClientId = '962429b0-b243-4841-bbee-a8960dd9d9af';
+    const challenge = pkceChallenge();
   
-      axios.get(oAuthProviderBaseUrl)
-      .then(function({data}){
-         console.log(data)
-        })
-      .catch(function(error){
-        console.log("Pas de code authorization : "+error)
-      });
-    }
-    return(
-        <Button style={styles.marginLeft}  title={children} onPress={getAuthorizationCode} />);
+    const query = new URLSearchParams({ 
+      client_id: oAuthClientId,
+      redirect_uri: `${oAuthProviderBaseUrl}/authorize`,
+      response_type: 'code',
+      code_challenge: challenge.codeChallenge,
+      code_challenge_method: 'S256'
+    });
+  
+    axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
+    let url = `${oAuthProviderBaseUrl}/authorize?${query.toString()}`;
+    // window.location.href = url;
+    Linking.openURL(url);
+  }
+  
+  async function authorizationCodeToAccessToken(code, state){
+    console.log('try to change authorization code to access token');
+    const oAuthPostTokenUrl = 'http://localhost:8085/oauth/token';
+    const oAuthCallbackUri = 'http://localhost:4200/login/redirect';
+    const oAuthClientId = '962e63ce-3ca3-4a95-818f-2d9bb2eedc02';
+    const challenge = pkceChallenge();
+    const navigation = useNavigation();
+  
+    await axios
+    .post(oAuthPostTokenUrl, {
+      grant_type: 'authorization_code',
+      client_id: oAuthClientId,
+      redirect_uri: oAuthCallbackUri,
+      code_verifier: challenge.codeVerifier,
+      code: code
+    })
+    .then(function(){
+      navigation.navigate('HomeScreen');
+    })
+    .catch(function(error){
+      console.log("Erreur suivante sur le token: " + error);
+    })
+  }
+  return(
+      <Button style={styles.marginLeft}  title="Click on me !" onPress={getAuthorizationCode} />
+      );
 }
 
 // --- COMPONENT qui capture l'url générée par EXPO au lancement de l'app
@@ -54,20 +83,13 @@ const OpenRegisterButton = ({ registerUrl, children }) => {
 // };
 
 const LoginScreen = () => {
-    const registerUrl = 'http://localhost:8085/register';
     // const { url: initialUrl, processing } = useInitialURL();
 
     return (
       <View  style={styles.container}>
-        {/* <Text>
-          {processing
-            ? `Processing the initial url from a deep link`
-            : `The deep link is: ${initialUrl || "None"}`}
-        </Text> */}
         <View style={styles.button}>
-          <LoginClassAuth />
-          {/* <OpenLoginButton loginUrl={loginUrl} redirUrl={initialUrl} baseUrl={baseUrl}>Se loguer</OpenLoginButton> */}
-          <OpenRegisterButton registerUrl={registerUrl}>S'enregistrer</OpenRegisterButton>
+          {/* <OpenLoginButton>Se loguer</OpenLoginButton> */}
+          <OpenRegisterButton>S'enregistrer</OpenRegisterButton>
         </View>
       </View>
     );

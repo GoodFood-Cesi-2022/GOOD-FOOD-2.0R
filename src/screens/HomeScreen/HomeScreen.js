@@ -1,7 +1,9 @@
 import { StyleSheet, Text, ScrollView, Button, View, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Contractors from '../../components/Contractors/Contractors';
 import UserLocation from '../../components/UserLocation/UserLocation';
+import CartScreen from '../CartScreen/CartScreen';
+import AccountScreen from '../AccountScreen/AccountScreen';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
@@ -9,24 +11,24 @@ const HomeScreen = () => {
 
   return (
     <>
-    <View style={{flexDirection:'row', justifyContent:'space-evenly', borderBottomWidth:2, paddingBottom:10}}>
-      <Image 
-          style={styles.tinyLogo}
-          source={require('../../../assets/tiny_logo_good_food.png')}
-      />
-      <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
+      <View style={{flexDirection:'row', justifyContent:'space-evenly', borderBottomWidth:2, paddingBottom:10}}>
+        <Image 
+            style={styles.tinyLogo}
+            source={require('../../../assets/tiny_logo_good_food.png')}
+        />
+        <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
             <Image 
                 style={styles.tinyLogo}
                 source={require('../../../assets/cart.png')}
             />
         </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('AccountScreen')}>
-          <Image 
-              style={styles.tinyLogo}
-              source={require('../../../assets/account.png')}
-          />
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity onPress={() => navigation.navigate('AccountScreen')}>
+            <Image 
+                style={styles.tinyLogo}
+                source={require('../../../assets/account.png')}
+            />
+        </TouchableOpacity>
+      </View>
       <ScrollView contentContainerStyle={styles.root} showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1}}>
           <Text style={[styles.text, styles.title]}>Les restaurants près de chez vous !</Text>
