@@ -3,11 +3,10 @@ import React from 'react'
 import Contractors_entities from './Contractors_entities';
 
 
-const Contractors = () => {
-  
+const Contractors = ({cart, updateCart}) => {
   return (
     <View style={styles.main}>
-      <Contractors_entities />
+      <Contractors_entities  updateCart={updateCart} cart={cart} />
     </View>
   )
 }

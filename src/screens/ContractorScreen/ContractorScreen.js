@@ -4,11 +4,11 @@ import Header from '../../components/Header/Header';
 import Recipes from '../../components/Recipes/Recipes';
 import { useNavigation } from '@react-navigation/native';
 
-const ContractorScreen = ({route}) => {
+const ContractorScreen = ({route, cart}) => {
     const {contractorName, contractorAvatar, contractorPhoneNumber} = route.params;
-    const [cart, updateCart] = useState([]);
     const navigation = useNavigation();
-    console.log(cart.length);
+    const [shopCart, updateShopCart] = useState([]);
+    console.log("Longueur du panier: "+ shopCart.length);
 
     return (
         <>
@@ -27,16 +27,16 @@ const ContractorScreen = ({route}) => {
             </View>
             <ScrollView>
                 <View>
-                    <Recipes name='Chicken wings' price= '3.90' updateCart={updateCart} cart={cart} />
+                    <Recipes name='Chicken wings' price= '3.90' updateCart={updateShopCart} cart={shopCart} />
                 </View>
                 <View>
-                    <Recipes name='Bucket duo' price= '17.50' updateCart={updateCart} cart={cart} />
+                    <Recipes name='Bucket duo' price= '17.50' updateCart={updateShopCart} cart={shopCart} />
                 </View>
                 <View style={[styles.container_bottom, styles.container_button_order]}>
                     <Text 
                     style={styles.title_button} 
                     onStartShouldSetResponder={() => navigation.navigate('CartScreen',{
-                        shoppingCart: cart,
+                        shoppingCart: shopCart,
                     })}>
                         Voir mon panier
                     </Text>

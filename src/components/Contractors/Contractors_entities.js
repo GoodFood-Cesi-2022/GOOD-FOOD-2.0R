@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-const Contractors_entities = () => {
+const Contractors_entities = ({cart, updateCart}) => {
     const { faker } = require('@faker-js/faker');
     faker.setLocale('fr');
     let contractors_entities =[
@@ -83,6 +83,7 @@ const Contractors_entities = () => {
             "lng": faker.address.longitude()
         },
         ];
+
     
     const renderContractors = contractors_entities.map(contractor => {
         const imageUrl = faker.image.food(300, 200, true);
@@ -101,6 +102,7 @@ const Contractors_entities = () => {
                             contractorName: contractor.name,
                             contractorAvatar: contractor.avatar,
                             contractorPhoneNumber: contractor.phone_number,
+                            cart: cart
                         })}>
                             Restaurant {contractor.name}
                         </Text>

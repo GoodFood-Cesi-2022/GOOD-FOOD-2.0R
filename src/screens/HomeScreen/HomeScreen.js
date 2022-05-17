@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [cart, updateCart] = useState([]);
 
   return (
     <>
@@ -16,7 +17,10 @@ const HomeScreen = () => {
             style={styles.tinyLogo}
             source={require('../../../assets/tiny_logo_good_food.png')}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate('CartScreen', {
+            updateCart: updateCart,
+            cart: cart
+        })}>
             <Image 
                 style={styles.tinyLogo}
                 source={require('../../../assets/cart.png')}
@@ -37,7 +41,7 @@ const HomeScreen = () => {
             onPress={() => navigation.navigate('MapScreen')}
           />
           <UserLocation/>
-          <Contractors/>
+          <Contractors  updateCart={updateCart} cart={cart} />
         </View>
       </ScrollView>
     </>

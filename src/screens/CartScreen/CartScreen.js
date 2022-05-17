@@ -14,7 +14,7 @@ const CartScreen = ({route}) => {
         console.log('this is total order : ' + totalOrder);
         return(
             <>
-                <View key={cartItem.name} style={styles.cartItemsContainer}>
+                <View key={Math.random(1000)*159*15} style={styles.cartItemsContainer}>
                     <View style={styles.info_item} key={cartItem.name}>
                         <Text style={[styles.text, styles.text_item_name]}>
                             {cartItem.name}
