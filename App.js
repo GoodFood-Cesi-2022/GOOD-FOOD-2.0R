@@ -1,18 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { SafeAreaView, Text } from "react-native";
+
 import Navigation from './src/navigation/index';
+import { StripeProvider } from "@stripe/stripe-react-native";
 
 export default function App() {
+ const [publishableKey, setPublishableKey] = useState('');
   return (
-    <SafeAreaView style={styles.root}>
-      <Navigation/>
-    </SafeAreaView>
+    <StripeProvider publishableKey={publishableKey}>
+        <Navigation/>
+    </StripeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  root:{
-    flex:1,
-    paddingTop:20,
-  },
-});

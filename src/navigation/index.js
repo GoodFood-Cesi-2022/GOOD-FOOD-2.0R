@@ -7,6 +7,7 @@ import MapScreen from '../screens/MapScreen/MapScreen';
 import ContractorScreen from '../screens/ContractorScreen/ContractorScreen';
 import AccountScreen from '../screens/AccountScreen/AccountScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
+import StripePayment from '../screens/StripePayment/StripePayment';
 import { StyleSheet, Text, View, SafeAreaView, Linking, Button } from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +22,7 @@ const Navigation = () => {
             <Stack.Screen name="MapScreen" component={MapScreen}  />
             <Stack.Screen name="AccountScreen" component={AccountScreen} />
             <Stack.Screen name="CartScreen" component={CartScreen} />
+            <Stack.Screen name="StripePayment" component={StripePayment} />
         </Stack.Navigator>
     </NavigationContainer>
   )

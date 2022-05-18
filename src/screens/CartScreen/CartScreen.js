@@ -1,8 +1,10 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Linking } from 'react-native';
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
+import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = ({route}) => {
+    const navigation = useNavigation();
     const {shoppingCart} = route.params;
     const [total, setTotal] = useState(0);
     console.log("Ceci est le panier :" + shoppingCart);
@@ -48,7 +50,8 @@ const CartScreen = ({route}) => {
                     <Text style={styles.text}> {totalOrder.toFixed(2)} €</Text>
                 </View>
                 <View style={styles.button_container}>
-                    <TouchableOpacity style={styles.button_to_pay}>
+                    <TouchableOpacity onPress={() => navigation.navigate('StripePayment')} style={styles.button_to_pay}>
+                    {/* <TouchableOpacity onPress={() => Linking.openURL('https://buy.stripe.com/test_eVa03egkn8Hr0cU000')} style={styles.button_to_pay}> */}
                         <Text style={styles.text_button_to_pay}>Payer</Text>
                     </TouchableOpacity>
                 </View>
