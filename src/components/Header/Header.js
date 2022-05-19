@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-evenly',
         height:60,
         width:'100%',
-        marginTop:30,
+        marginTop:50,
         paddingTop:15,
         backgroundColor:'#eee',
         borderBottomWidth:2,

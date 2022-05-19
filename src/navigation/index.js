@@ -7,24 +7,30 @@ import MapScreen from '../screens/MapScreen/MapScreen';
 import ContractorScreen from '../screens/ContractorScreen/ContractorScreen';
 import AccountScreen from '../screens/AccountScreen/AccountScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
-import StripePayment from '../screens/StripePayment/StripePayment';
+import TrackOrderScreen from '../screens/TrackOrderScreen/TrackOrderScreen';
+import PaymentsUICompleteScreen from '../screens/PaymentsUICompleteScreen';
 import { StyleSheet, Text, View, SafeAreaView, Linking, Button } from 'react-native';
+import { StripeProvider } from "@stripe/stripe-react-native";
+
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
-    <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false }}>
-            {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="ContractorScreen" component={ContractorScreen} />
-            <Stack.Screen name="MapScreen" component={MapScreen}  />
-            <Stack.Screen name="AccountScreen" component={AccountScreen} />
-            <Stack.Screen name="CartScreen" component={CartScreen} />
-            <Stack.Screen name="StripePayment" component={StripePayment} />
-        </Stack.Navigator>
-    </NavigationContainer>
+    <StripeProvider publishableKey="pk_test_51L0QCZCjzbol7otB5MhP3f9bzUU33PwjSmWBqsokuL2dxxSfcXyrrmcX1Rp7AfS21rnibbgdIv1jtU9UaRWcysO700PW4s5V9U">
+      <NavigationContainer>
+          <Stack.Navigator screenOptions={{headerShown: false }}>
+              {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
+              <Stack.Screen name="HomeScreen" component={HomeScreen} />
+              <Stack.Screen name="ContractorScreen" component={ContractorScreen} />
+              <Stack.Screen name="MapScreen" component={MapScreen}  />
+              <Stack.Screen name="AccountScreen" component={AccountScreen} />
+              <Stack.Screen name="CartScreen" component={CartScreen} />
+              <Stack.Screen name="PaymentsUICompleteScreen" component={PaymentsUICompleteScreen} />
+              <Stack.Screen name="TrackOrderScreen" component={TrackOrderScreen} />
+          </Stack.Navigator>
+      </NavigationContainer>
+    </StripeProvider>
   )
 }
 

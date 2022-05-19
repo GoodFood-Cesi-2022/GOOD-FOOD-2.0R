@@ -6,13 +6,13 @@ import { useNavigation } from '@react-navigation/native';
 const CartScreen = ({route}) => {
     const navigation = useNavigation();
     const {shoppingCart} = route.params;
-    const [total, setTotal] = useState(0);
     console.log("Ceci est le panier :" + shoppingCart);
     
     let totalOrder = 0;
 
     const cartItems = shoppingCart.map(cartItem => {
         totalOrder += parseFloat(cartItem.price);
+        
         console.log('this is total order : ' + totalOrder);
         return(
             <>
@@ -32,7 +32,7 @@ const CartScreen = ({route}) => {
             </>
         )
     });
-
+    
   return (
         <>
             <Header />
@@ -50,8 +50,7 @@ const CartScreen = ({route}) => {
                     <Text style={styles.text}> {totalOrder.toFixed(2)} €</Text>
                 </View>
                 <View style={styles.button_container}>
-                    <TouchableOpacity onPress={() => navigation.navigate('StripePayment')} style={styles.button_to_pay}>
-                    {/* <TouchableOpacity onPress={() => Linking.openURL('https://buy.stripe.com/test_eVa03egkn8Hr0cU000')} style={styles.button_to_pay}> */}
+                    <TouchableOpacity onPress={() => navigation.navigate('PaymentsUICompleteScreen', {totalOrder: totalOrder, shoppingCart: shoppingCart})} style={styles.button_to_pay}>
                         <Text style={styles.text_button_to_pay}>Payer</Text>
                     </TouchableOpacity>
                 </View>
