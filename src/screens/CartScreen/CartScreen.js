@@ -6,14 +6,29 @@ import { useNavigation } from '@react-navigation/native';
 const CartScreen = ({route}) => {
     const navigation = useNavigation();
     const {shoppingCart} = route.params;
-    console.log("Ceci est le panier :" + shoppingCart);
-    
+
     let totalOrder = 0;
+    let totalOrderBucket = 0;
+    let totalOrderWings = 0;
+    let bucketCounter = 1;
+    let wingsCounter = 1;
 
     const cartItems = shoppingCart.map(cartItem => {
         totalOrder += parseFloat(cartItem.price);
         
         console.log('this is total order : ' + totalOrder);
+
+        const handleNumberOfProduct = (cartItem) => {
+            if (cartItem === 'Bucket duo' && shoppingCart.includes('Bucket duo')) {
+                bucketCounter += 1;
+                return 
+            } else if(cartItem === 'Chicken wings' && shoppingCart.includes('Chicken wings')){
+               return wingsCounter += 1;
+
+            }
+            return 1
+        }
+        handleNumberOfProduct(cartItem);
         return(
             <>
                 <View key={Math.random(1000)*159*15} style={styles.cartItemsContainer}>
@@ -23,11 +38,19 @@ const CartScreen = ({route}) => {
                         </Text>
                     </View>
                     <View style={styles.info_item} key={cartItem.name}>
-                        <Text style={[styles.text, styles.text_item_price]}>
-                            {cartItem.price} €
-                        </Text>
+                        <View style={{flexDirection:'row'}}>
+                            <View style={{padding:5, width:55, height:80}}>
+                                <Text style={{textAlign:'center', fontWeight:'bold'}}>-</Text>
+                            </View>
+                            <Text style={{textAlign:'center', fontWeight:'bold'}}>{handleNumberOfProduct(cartItem)}</Text>
+                            <View style={{padding:5, width:55, height:80}}>
+                                <Text style={{textAlign:'center', fontWeight:'bold'}}>+</Text>
+                            </View>
+                            <Text style={[styles.text, styles.text_item_price]}>
+                                {cartItem.price} €
+                            </Text>
+                        </View>
                     </View>
-                    <Text />
                 </View>
             </>
         )
@@ -96,7 +119,8 @@ const styles = StyleSheet.create({
     title:{
         fontSize:18,
         fontWeight:'bold',
-        textAlign:'center'
+        textAlign:'center',
+        marginBottom:30
     },
     info_item:{
         width: '45%',

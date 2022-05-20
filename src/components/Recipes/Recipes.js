@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, {useState} from 'react';
 
-const Recipes = ({name, price, updateCart, cart}) => {
+const Recipes = ({name, price, updateCart, cart, setBucketDuoCounter, bucketDuoCounter, setWingsCounter , wingsCounter}) => {
 
     function handleAddToCart(){
         updateCart([...cart, {name, price}]);

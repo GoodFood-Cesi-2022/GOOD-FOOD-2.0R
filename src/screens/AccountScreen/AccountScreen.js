@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import React, {useState} from 'react';
 import Header from '../../components/Header/Header';
 //Import moment for date and time
 import moment from 'moment';
 import 'moment/locale/fr';
+import { ListItem } from 'react-native-elements'
 
 const AccountScreen = () => {
     const { faker } = require('@faker-js/faker');
@@ -56,22 +57,52 @@ const AccountScreen = () => {
         ];
 
     let avatar = faker.image.people();
+
+    
+        const list = [
+            {
+              title: 'Restaurant "Chez Gino"',
+              price: '89,50€'
+            },
+            {
+              title: 'Asia Trips',
+              price: '34,70€'
+            },
+            // more items
+          ]
+
   return (
       <>
         <Header />
-        <View style={styles.title_container}>
-            <Text style={styles.title}>Mon compte</Text>
-        </View>
-        <View style={styles.informations_container}>
-            <View style={styles.avatar_container}>
-                <Image style={styles.avatar} source={{uri:avatar}} />
+        <ScrollView>
+            <View style={styles.title_container}>
+                <Text style={styles.title}>Mon compte</Text>
             </View>
-            <View style={styles.text_container}>
-                <Text style={styles.text}>{users[0].firstname} {users[0].lastname}</Text>
-                <Text style={styles.text}>{users[0].phone_number}</Text>
-                <Text style={styles.text}>{users[0].firstname}.{users[0].lastname}@viacesi.fr</Text>
+            <View style={styles.informations_container}>
+                <View style={styles.avatar_container}>
+                    <Image style={styles.avatar} source={{uri:avatar}} />
+                </View>
+                <View style={styles.text_container}>
+                    <Text style={styles.text}>Prénom: {users[0].firstname}</Text>
+                    <Text style={styles.text}>Nom: {users[0].lastname}</Text>
+                    <Text style={styles.text}>Téléphone: {users[0].phone_number}</Text>
+                    <Text style={[styles.text, {marginRight:20}]}>Email: {users[0].firstname}.{users[0].lastname}@viacesi.fr</Text>
+                </View>
             </View>
-        </View>
+            <View>
+                <Text style={[styles.title, {marginTop:20}]}>Mes commandes</Text>
+            </View>
+            <View style={{width:'100%'}}>
+                <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', padding:10}}>
+                    <Text style={styles.text}>{list[0].title}</Text>
+                    <Text style={styles.text}>{list[0].price}</Text>
+                </View>
+                <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', padding:10}}>
+                    <Text style={styles.text}>{list[1].title}</Text>
+                    <Text style={styles.text}>{list[1].price}</Text>
+                </View>
+            </View>
+        </ScrollView>
       </>
   )
 }
@@ -93,15 +124,16 @@ const styles = StyleSheet.create({
         borderRadius:50,
     },
     informations_container:{
-        marginTop:80,
-        marginLeft: 30,
+        marginTop:60,
+        paddingBottom:20,
+        width:'100%',
     },
     text_container:{
         marginLeft: 30,
-        marginTop:40
+        marginTop:25,
     },
     text:{
-        fontSize:20,
+        fontSize:18,
         marginTop:30,
     }
 })

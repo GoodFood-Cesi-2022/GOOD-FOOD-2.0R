@@ -12,12 +12,12 @@ const HomeScreen = () => {
 
   return (
     <>
-      <View style={{flexDirection:'row', justifyContent:'space-evenly', borderBottomWidth:2, paddingBottom:10}}>
+      <View style={{flexDirection:'row', justifyContent:'space-evenly', borderBottomWidth:2, paddingBottom:10, marginTop:30}}>
         <Image 
             style={styles.tinyLogo}
             source={require('../../../assets/tiny_logo_good_food.png')}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('CartScreen', {
+        {/* <TouchableOpacity onPress={() => navigation.navigate('CartScreen', {
             updateCart: updateCart,
             cart: cart
         })}>
@@ -25,7 +25,7 @@ const HomeScreen = () => {
                 style={styles.tinyLogo}
                 source={require('../../../assets/cart.png')}
             />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={() => navigation.navigate('AccountScreen')}>
             <Image 
                 style={styles.tinyLogo}

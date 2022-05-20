@@ -8,6 +8,9 @@ const ContractorScreen = ({route, cart}) => {
     const {contractorName, contractorAvatar, contractorPhoneNumber} = route.params;
     const navigation = useNavigation();
     const [shopCart, updateShopCart] = useState([]);
+    const [wingsCounter, setWingsCounter] = useState(0);
+    const [bucketDuoCounter, setbucketDuoCounter] = useState(0);
+
     console.log("Longueur du panier: "+ shopCart.length);
 
     return (
@@ -27,10 +30,10 @@ const ContractorScreen = ({route, cart}) => {
             </View>
             <ScrollView>
                 <View>
-                    <Recipes name='Chicken wings' price= '3.90' updateCart={updateShopCart} cart={shopCart} />
+                    <Recipes name='Chicken wings' price= '3.90' updateCart={updateShopCart} cart={shopCart} setWingsCounter={setWingsCounter} wingsCounter={wingsCounter} />
                 </View>
                 <View>
-                    <Recipes name='Bucket duo' price= '17.50' updateCart={updateShopCart} cart={shopCart} />
+                    <Recipes name='Bucket duo' price= '17.50' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
                 </View>
                 <View style={[styles.container_bottom, styles.container_button_order]}>
                     <Text 
