@@ -7,7 +7,6 @@ import MapScreen from '../screens/MapScreen/MapScreen';
 import ContractorScreen from '../screens/ContractorScreen/ContractorScreen';
 import AccountScreen from '../screens/AccountScreen/AccountScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
-import TrackOrderScreen from '../screens/TrackOrderScreen/TrackOrderScreen';
 import WebSocketScreen from '../screens/TrackOrderScreen/WebSocketScreen';
 import PaymentsUICompleteScreen from '../screens/PaymentsUICompleteScreen';
 import { StyleSheet, Text, View, SafeAreaView, Linking, Button } from 'react-native';
@@ -22,7 +21,6 @@ const Navigation = () => {
       <NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false }}>
               {/* <Stack.Screen name="LoginScreen" component={LoginScreen} /> */}
-              <Stack.Screen name="WebSocketScreen" component={WebSocketScreen} />
               <Stack.Screen name="LogMeIn" component={LogMeIn} />
               <Stack.Screen name="HomeScreen" component={HomeScreen} />
               <Stack.Screen name="ContractorScreen" component={ContractorScreen} />
@@ -30,7 +28,7 @@ const Navigation = () => {
               <Stack.Screen name="AccountScreen" component={AccountScreen} />
               <Stack.Screen name="CartScreen" component={CartScreen} />
               <Stack.Screen name="PaymentsUICompleteScreen" component={PaymentsUICompleteScreen} />
-              <Stack.Screen name="TrackOrderScreen" component={TrackOrderScreen} />
+              <Stack.Screen name="WebSocketScreen" component={WebSocketScreen} />
           </Stack.Navigator>
       </NavigationContainer>
     </StripeProvider>
