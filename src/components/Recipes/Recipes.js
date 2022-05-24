@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
         alignItems:'center',
         flexDirection:'row',
         justifyContent:'space-between',
+        borderWidth:1,
+        padding:2
     },
     recipe_container:{
         marginRight:30,
@@ -38,11 +40,14 @@ const styles = StyleSheet.create({
     image_container:{
         width:'50%',
         marginLeft:10,
-        marginTop:15
+        backgroundColor:"rgba(125,125,125,0.2)",
+        padding:10,
     },
     image:{
         height: 150,
         width: 150,
+        borderTopLeftRadius:50,
+        borderBottomLeftRadius:50,
     },
     text:{
         fontSize: 18,

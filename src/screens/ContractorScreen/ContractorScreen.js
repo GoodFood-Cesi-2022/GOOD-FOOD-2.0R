@@ -29,11 +29,29 @@ const ContractorScreen = ({route, cart}) => {
                 <Text style={[styles.text, styles.titre_section]}>Notre sélection pour vous</Text>
             </View>
             <ScrollView>
+                <Text style={styles.titre_section}>Entrées</Text>
                 <View>
                     <Recipes name='Chicken wings' price= '3.90' updateCart={updateShopCart} cart={shopCart} setWingsCounter={setWingsCounter} wingsCounter={wingsCounter} />
+                    <Recipes name='Mozzarella sticks' price= '3.90' updateCart={updateShopCart} cart={shopCart} setWingsCounter={setWingsCounter} wingsCounter={wingsCounter} />
+                    <Recipes name='Salade verte' price= '2.00' updateCart={updateShopCart} cart={shopCart} setWingsCounter={setWingsCounter} wingsCounter={wingsCounter} />
                 </View>
+                <Text style={styles.titre_section}>Plats</Text>
                 <View>
-                    <Recipes name='Bucket duo' price= '17.50' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                    <Recipes name='Saumon au beurre blanc' price= '17.50' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                    <Recipes name='Entrecôte XXL' price= '23.50' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                    <Recipes name='Caille farcie foie gras' price= '27.50' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                </View>
+                <Text style={styles.titre_section}>Desserts</Text>
+                <View>
+                    <Recipes name='Brioche perdue' price= '7.50' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                    <Recipes name='Mille-feuilles' price= '7.50' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                    <Recipes name='Crème brulée' price= '7.50' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                </View>
+                <Text style={styles.titre_section}>Boissons</Text>
+                <View>
+                    <Recipes name='Coca-Cola 33cl' price= '2.00' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                    <Recipes name='Orangina 33cl' price= '2.00' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
+                    <Recipes name='Ice-tea 33cl' price= '2.00' updateCart={updateShopCart} cart={shopCart} setbucketDuoCounter={setbucketDuoCounter} bucketDuoCounter={bucketDuoCounter} />
                 </View>
                 <View style={[styles.container_bottom, styles.container_button_order]}>
                     <Text 
@@ -78,6 +96,8 @@ const styles = StyleSheet.create({
     },
     titre_section:{
         fontSize:18,
+        marginTop:10,
+        fontWeight:'bold',
     },
     container_button_order:{
         height:40,
@@ -96,7 +116,9 @@ const styles = StyleSheet.create({
         width:'100%',
         height:60,
         justifyContent:'center',
+        alignItems:'center',
+        marginHorizontal: '30%',
         flexDirection:'row',
-        marginTop:30
+        marginTop:30,
     }
 })

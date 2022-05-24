@@ -22,7 +22,7 @@ const OpenRegisterButton = () => {
       redirect_uri: `${oAuthProviderBaseUrl}/authorize`,
       response_type: 'code',
       code_challenge: challenge.codeChallenge,
-      code_challenge_method: 'S256'
+      code_challenge_method: 'S256',
     });
   
     axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
