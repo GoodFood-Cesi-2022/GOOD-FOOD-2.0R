@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
         marginLeft:10,
         backgroundColor:"rgba(125,125,125,0.2)",
         padding:10,
+        borderRightColor:"black",
+        borderRightWidth:1,
     },
     image:{
         height: 150,
