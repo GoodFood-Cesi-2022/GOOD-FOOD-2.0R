@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
 const WebSocketScreen = () => {
@@ -8,6 +9,7 @@ const WebSocketScreen = () => {
   const [disableButton, setDisableButton] = React.useState(true);
   const [inputFieldEmpty, setInputFieldEmpty] = React.useState(true);
   const [serverMessages, setServerMessages] = React.useState([]);
+  const navigation = useNavigation();
   //   var ws = React.useRef(new WebSocket('ws://w567l.sse.codesandbox.io/')).current;
 //   var ws = React.useRef(new WebSocket('wss://demo.piesocket.com/v3/channel_1?api_key=VCXCEuvhGcBDP7XhiJJUDvR1e1D3eiVjgZ9VRiaV&notify_self')).current;
   var ws = React.useRef(new WebSocket('wss://javascript.info/article/websocket/chat/ws')).current;
@@ -55,6 +57,14 @@ const WebSocketScreen = () => {
 
   return (
       <View style={styles.container}>
+          <View style={styles.logo_container}>
+            <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+                <Image 
+                    style={styles.logo}
+                    source={require('../../../assets/logo-Good-Food-150x150.png')}
+                />
+            </TouchableOpacity>
+          </View>
         <View style={{marginTop:40, marginBottom:30}}>
             <Text style={{fontSize:22, textAlign:'center'}}>Merci pour votre commande !</Text>
         </View>
@@ -109,6 +119,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
     paddingTop: 30,
     padding: 8,
+  },
+  logo_container:{
+      marginLeft:'30%',
   },
   textBubble_container:{
       padding:5,

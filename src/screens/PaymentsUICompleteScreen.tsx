@@ -46,7 +46,7 @@ export default function PaymentsUICompleteScreen({route}) {
 
     if (!error) {
       Alert.alert('Success', 'The payment was confirmed successfully');
-      setTimeout(() => navigation.navigate('TrackOrderScreen'), 5000);
+      setTimeout(() => navigation.navigate('WebSocketScreen'), 3000);
     } else if (error.code === PaymentSheetError.Failed) {
       Alert.alert(
         `PaymentSheet present failed with error code: ${error.code}`,
