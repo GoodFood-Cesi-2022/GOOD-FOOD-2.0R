@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import UserLocation from '../../components/UserLocation/UserLocation';
 import Header from  '../../components/Header/Header';
+import fr_crous_restauration_france_entiere from '../../../assets/data/fr_crous_restauration_france_entiere.json';
 
 const MapScreen = (props) => {
   const { faker } = require('@faker-js/faker');
@@ -50,17 +51,46 @@ const MapScreen = (props) => {
         "lat": 44.654789,
         "lng": 5.7166700
     },
+    {
+        "id": 4,
+        "first_line": faker.address.streetName(),
+        "second_line": faker.address.secondaryAddress(),
+        "zip_code": faker.address.zipCode(),
+        "country": faker.address.country(),
+        "city": faker.address.cityName(),
+        "lat": 45.188529,
+        "lng": 5.724524
+    },
+    {
+        "id": 5,
+        "first_line": faker.address.streetName(),
+        "second_line": faker.address.secondaryAddress(),
+        "zip_code": faker.address.zipCode(),
+        "country": faker.address.country(),
+        "city": faker.address.cityName(),
+        "lat": 45.183529,
+        "lng": 5.7266700
+    },
+    {
+        "id": 6,
+        "first_line": faker.address.streetName(),
+        "second_line": faker.address.secondaryAddress(),
+        "zip_code": faker.address.zipCode(),
+        "country": faker.address.country(),
+        "city": faker.address.cityName(),
+        "lat": 45.180529,
+        "lng": 5.7206700
+    },
     ];
 
-  let marker = 
-    contractors_adresses.map((item) => {
-      const [contractor, setContractor] = useState({
-        latitude: item.lat,
-        longitude: item.lng,
-      });
-      return <Marker key={item.lat} coordinate={contractor} />;
-    })
-    ;
+  let myRestaurants = fr_crous_restauration_france_entiere.map((restaurant, ind) => {
+    const [contractor, setContractor] = useState({
+        latitude: restaurant.fields.geolocalisation[0],
+        longitude: restaurant.fields.geolocalisation[1],
+      })
+    return <Marker key={ind} coordinate={contractor} />;
+  })
+
   return(
     <>
       <Header />
@@ -77,7 +107,7 @@ const MapScreen = (props) => {
         //onRegionChangeComplete runs when the user stops dragging MapView
         onRegionChangeComplete={(region) => setRegion(region)}
       >
-      {marker}
+      {myRestaurants}
       </MapView>
     </>)
 }

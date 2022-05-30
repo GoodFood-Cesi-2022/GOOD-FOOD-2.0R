@@ -2,8 +2,6 @@ import { StyleSheet, Text, ScrollView, Button, View, Image, TouchableOpacity } f
 import React, {useState} from 'react';
 import Contractors from '../../components/Contractors/Contractors';
 import UserLocation from '../../components/UserLocation/UserLocation';
-import CartScreen from '../CartScreen/CartScreen';
-import AccountScreen from '../AccountScreen/AccountScreen';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
