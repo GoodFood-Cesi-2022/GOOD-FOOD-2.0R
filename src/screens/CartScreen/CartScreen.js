@@ -32,12 +32,12 @@ const CartScreen = ({route}) => {
         return(
             <>
                 <View key={Math.random(1000)*159*15} style={styles.cartItemsContainer}>
-                    <View style={styles.info_item} key={cartItem.name}>
+                    <View style={styles.info_item} key={Math.random(40)*Math.random(40)}>
                         <Text style={[styles.text, styles.text_item_name]}>
                             {cartItem.name}
                         </Text>
                     </View>
-                    <View style={styles.info_item} key={cartItem.name}>
+                    <View style={styles.info_item} key={Math.random(40)*Math.random(40)}>
                         <View style={{flexDirection:'row'}}>
                             <View style={{padding:5, width:55, height:80}}>
                                 <Text style={{textAlign:'center', fontWeight:'bold'}}>-</Text>

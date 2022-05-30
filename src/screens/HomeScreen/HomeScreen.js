@@ -15,15 +15,6 @@ const HomeScreen = () => {
             style={styles.tinyLogo}
             source={require('../../../assets/tiny_logo_good_food.png')}
         />
-        {/* <TouchableOpacity onPress={() => navigation.navigate('CartScreen', {
-            updateCart: updateCart,
-            cart: cart
-        })}>
-            <Image 
-                style={styles.tinyLogo}
-                source={require('../../../assets/cart.png')}
-            />
-        </TouchableOpacity> */}
         <TouchableOpacity onPress={() => navigation.navigate('AccountScreen')}>
             <Image 
                 style={styles.tinyLogo}

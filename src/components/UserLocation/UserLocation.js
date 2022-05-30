@@ -37,6 +37,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.paragraph}>Votre adresse : </Text>
       <Text style={styles.paragraph}>{address}</Text>
     </View>
   );

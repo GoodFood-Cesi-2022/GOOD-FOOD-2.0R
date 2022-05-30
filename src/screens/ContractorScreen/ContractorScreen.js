@@ -16,6 +16,7 @@ const ContractorScreen = ({route, cart}) => {
     return (
         <>
             <Header />
+            <ScrollView>
             <View style={styles.container}>
                 <View style={styles.contractor_header}>
                     <Image style={styles.image} source={{uri: contractorAvatar}} />
@@ -28,7 +29,6 @@ const ContractorScreen = ({route, cart}) => {
             <View>
                 <Text style={[styles.text, styles.titre_section]}>Notre sélection pour vous</Text>
             </View>
-            <ScrollView>
                 <Text style={styles.titre_section}>Entrées</Text>
                 <View>
                     <Recipes name='Chicken wings' price= '3.90' updateCart={updateShopCart} cart={shopCart} setWingsCounter={setWingsCounter} wingsCounter={wingsCounter} />

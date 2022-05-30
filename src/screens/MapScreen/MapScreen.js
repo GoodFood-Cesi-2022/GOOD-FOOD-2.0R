@@ -88,7 +88,11 @@ const MapScreen = (props) => {
         latitude: restaurant.fields.geolocalisation[0],
         longitude: restaurant.fields.geolocalisation[1],
       })
-    return <Marker key={ind} coordinate={contractor} />;
+    return <Marker 
+      key={ind}
+      coordinate={contractor}
+      title={restaurant.fields.title}
+    />;
   })
 
   return(
