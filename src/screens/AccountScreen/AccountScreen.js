@@ -35,7 +35,6 @@ const AccountScreen = () => {
     const[firstname,setFirstname] = useState("Roberto");
     const[lastname,setLastname] = useState("Carlos");
     const[phoneNumber,setPhoneNumber] = useState("07.59.46.13.79");
-    const[email,setEmail] = useState(firstname+"."+lastname+"@viacesi.fr");
     
     let avatar = faker.image.people();
 
@@ -91,9 +90,8 @@ const AccountScreen = () => {
                     <View style={{flexDirection:'row'}}>
                         <Text style={styles.text}>Email: </Text>
                         <TextInput
-                            style={styles.text} 
-                            onChangeText={setEmail}
-                            value={email}
+                            style={styles.text}
+                            value={`${firstname.toLowerCase()}.${lastname.toLowerCase()}@viacesi.fr`}
                         />
                     </View>
                 </View>
