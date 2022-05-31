@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
 import React, {useState} from 'react';
 import Header from '../../components/Header/Header';
 //Import moment for date and time
 import moment from 'moment';
 import 'moment/locale/fr';
-import { ListItem } from 'react-native-elements'
 
 const AccountScreen = () => {
     const { faker } = require('@faker-js/faker');
@@ -13,49 +12,31 @@ const AccountScreen = () => {
     locale.locale('fr');
     locale.format('LLL');
 
-    const [user, setUser] = useState({
-        id: 1,
-        firstname: "",
-        lastname: "",
-        password: "",
-        created_at: "",
-        updated_at: "",
-        phone_number: 0,
-        email_id: 1
-    });
-    let users = [
-        {
-            "id": 1,
-            "firstname": faker.name.firstName(),
-            "lastname": faker.name.lastName(),
-            "password": faker.internet.password(),
-            "created_at": moment(1316116057189).fromNow(),
-            "updated_at": moment().startOf('day').fromNow(),
-            "phone_number": faker.phone.phoneNumber(),
-            "email_id": 1
-        },
-        {
-            "id": 2,
-            "firstname": faker.name.firstName(),
-            "lastname": faker.name.lastName(),
-            "password": faker.internet.password(),
-            "created_at": moment(6001).fromNow(),
-            "updated_at": moment().startOf('day').fromNow(),
-            "phone_number": faker.phone.phoneNumber(),
-            "email_id": 2
-        },
-        {
-            "id": 3,
-            "firstname": faker.name.firstName(),
-            "lastname": faker.name.lastName(),
-            "password": faker.internet.password(),
-            "created_at": moment().startOf('day').fromNow(),
-            "updated_at": moment().startOf('day').fromNow(),
-            "phone_number": faker.phone.phoneNumber(),
-            "email_id": 3
-        },
-        ];
-
+    // const [user, setUser] = useState({
+    //     id: 1,
+    //     firstname: faker.name.firstName(),
+    //     lastname: faker.name.lastName(),
+    //     password: faker.internet.password(),
+    //     created_at: moment(1316116057189).fromNow(),
+    //     updated_at: moment().startOf('day').fromNow(),
+    //     phone_number: faker.phone.phoneNumber(),
+    //     email_id: 1
+    // });
+    // const [user, setUser] = useState({
+    //     id: 1,
+    //     firstname: "Roberto",
+    //     lastname: "Allagna",
+    //     password: "R45tgb678ik$!",
+    //     created_at: moment(1316116057189).fromNow(),
+    //     updated_at: moment().startOf('day').fromNow(),
+    //     phone_number: "",
+    //     email_id: 1
+    // });
+    const[firstname,setFirstname] = useState("Roberto");
+    const[lastname,setLastname] = useState("Carlos");
+    const[phoneNumber,setPhoneNumber] = useState("07.59.46.13.79");
+    const[email,setEmail] = useState(firstname+"."+lastname+"@viacesi.fr");
+    
     let avatar = faker.image.people();
 
     
@@ -83,10 +64,38 @@ const AccountScreen = () => {
                     <Image style={styles.avatar} source={{uri:avatar}} />
                 </View>
                 <View style={styles.text_container}>
-                    <Text style={styles.text}>Prénom: {users[0].firstname}</Text>
-                    <Text style={styles.text}>Nom: {users[0].lastname}</Text>
-                    <Text style={styles.text}>Téléphone: {users[0].phone_number}</Text>
-                    <Text style={[styles.text, {marginRight:20}]}>Email: {users[0].firstname}.{users[0].lastname}@viacesi.fr</Text>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={styles.text}>Prénom: </Text>
+                        <TextInput
+                            style={styles.text} 
+                            onChangeText={setFirstname}
+                            value={firstname}
+                        />
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={styles.text}>Nom: </Text>
+                        <TextInput
+                            style={styles.text} 
+                            onChangeText={setLastname}
+                            value={lastname}
+                        />
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={styles.text}>Téléphone: </Text>
+                        <TextInput
+                            style={styles.text} 
+                            onChangeText={setPhoneNumber}
+                            value={phoneNumber}
+                        />
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={styles.text}>Email: </Text>
+                        <TextInput
+                            style={styles.text} 
+                            onChangeText={setEmail}
+                            value={email}
+                        />
+                    </View>
                 </View>
             </View>
             <View>
