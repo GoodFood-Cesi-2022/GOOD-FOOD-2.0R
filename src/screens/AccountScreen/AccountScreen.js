@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
 import React, {useState} from 'react';
 import Header from '../../components/Header/Header';
+import MyOrdersScreen from './MyOrdersScreen';
+import MyFavoritesScreen from './MyFavoritesScreen';
 //Import moment for date and time
 import moment from 'moment';
 import 'moment/locale/fr';
@@ -12,51 +14,20 @@ const AccountScreen = () => {
     locale.locale('fr');
     locale.format('LLL');
 
-    // const [user, setUser] = useState({
-    //     id: 1,
-    //     firstname: faker.name.firstName(),
-    //     lastname: faker.name.lastName(),
-    //     password: faker.internet.password(),
-    //     created_at: moment(1316116057189).fromNow(),
-    //     updated_at: moment().startOf('day').fromNow(),
-    //     phone_number: faker.phone.phoneNumber(),
-    //     email_id: 1
-    // });
-    // const [user, setUser] = useState({
-    //     id: 1,
-    //     firstname: "Roberto",
-    //     lastname: "Allagna",
-    //     password: "R45tgb678ik$!",
-    //     created_at: moment(1316116057189).fromNow(),
-    //     updated_at: moment().startOf('day').fromNow(),
-    //     phone_number: "",
-    //     email_id: 1
-    // });
     const[firstname,setFirstname] = useState("Roberto");
     const[lastname,setLastname] = useState("Carlos");
     const[phoneNumber,setPhoneNumber] = useState("07.59.46.13.79");
     
     let avatar = faker.image.people();
 
-    
-        const list = [
-            {
-              title: 'Restaurant "Chez Gino"',
-              price: '89,50€'
-            },
-            {
-              title: 'Asia Trips',
-              price: '34,70€'
-            },
-            // more items
-          ]
+   
 
   return (
       <>
         <Header />
         <ScrollView>
-            <View style={styles.title_container}>
-                <Text style={styles.title}>Mon compte</Text>
+            <View>
+                <Text style={[styles.title, {textDecorationLine:'underline'}]}>Mon compte</Text>
             </View>
             <View style={styles.informations_container}>
                 <View style={styles.avatar_container}>
@@ -96,19 +67,8 @@ const AccountScreen = () => {
                     </View>
                 </View>
             </View>
-            <View>
-                <Text style={[styles.title, {marginTop:20}]}>Mes commandes</Text>
-            </View>
-            <View style={{width:'100%'}}>
-                <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', padding:10}}>
-                    <Text style={styles.text}>{list[0].title}</Text>
-                    <Text style={styles.text}>{list[0].price}</Text>
-                </View>
-                <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between', padding:10}}>
-                    <Text style={styles.text}>{list[1].title}</Text>
-                    <Text style={styles.text}>{list[1].price}</Text>
-                </View>
-            </View>
+            <MyOrdersScreen />
+            <MyFavoritesScreen />
         </ScrollView>
       </>
   )
@@ -120,6 +80,7 @@ const styles = StyleSheet.create({
     title:{
         textAlign:'center',
         fontSize:22,
+        fontWeight:'bold'
     },
     avatar_container:{
         alignItems:'center'
@@ -129,11 +90,17 @@ const styles = StyleSheet.create({
         height: 150,
         marginRight:30,
         borderRadius:50,
+        marginTop:-50,
+        marginBottom:-20,
+        marginLeft:20
     },
     informations_container:{
         marginTop:60,
         paddingBottom:20,
         width:'100%',
+        backgroundColor:'#ebedf0',
+        borderTopWidth:1,
+        borderTopColor:'black'
     },
     text_container:{
         marginLeft: 30,
