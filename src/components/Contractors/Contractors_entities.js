@@ -43,36 +43,25 @@ const Contractor = ({name, cart}) => {
         "avatar": faker.image.avatar()
     }])
 
-    let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant) => {
+    // Sort Contractors by user's city
+    let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant, index) => {
         let theRestaurants = [];
         if (restaurant.fields.zone.indexOf("Grenoble") !== -1) {
             theRestaurants.push(restaurant);
-            console.log(theRestaurants)
-        }else{
-            return
-        }
-        return nearestRestaurants;
-    })
-
-    return(
-        <>
-            <View 
-            key={10} 
-            style={styles.contractorsContainer}
-            >
-                {nearestRestaurants}
-                <Image style={styles.image} source={{uri: imageUrl}} />
-                <View key={1} style={styles.textOverflow}>
+            return(
+                <>
+                <Image key={index} style={styles.image} source={{uri: restaurant.fields.photo}} />
+                <View key={index + 1} style={styles.textOverflow}>
                     <Text
-                        key={2}  
+                        key={2 + index}  
                     style={styles.text} 
                     onStartShouldSetResponder={() => navigation.navigate('ContractorScreen',{
                         contractorName: name,
-                        contractorAvatar: contractorEntity.avatar,
+                        contractorAvatar: restaurant.fields.photo,
                         contractorPhoneNumber: contractorEntity.phone_number,
                         cart: cart
                     })}>
-                        {`Restaurant ${name}`}
+                        {restaurant.fields.title}
                     </Text>
                     {
                         isFavorite ? 
@@ -82,25 +71,39 @@ const Contractor = ({name, cart}) => {
                                     // setFavorites(...favorites, [name]);
                                     // console.log(favorites);
                                 }}  
-                                key={3} 
+                                key={3 + index} 
                                 style={styles.favorite_logo}  
                                 source={require('../../../assets/etoile_vide.png')} 
                             />
                         :
-                            <Image 
-                                onStartShouldSetResponder={() => {
-                                    setIsFavorite(!isFavorite);
-                                    // let favoriIndex = favorites.indexOf({ ${name}});
-                                    // favorites.splice( favoriIndex, 1);
-                                }
-                                }  
-                                key={3} 
-                                style={styles.favorite_logo}  
-                                source={require('../../../assets/etoile_pleine.png')} 
-                            />
+                    <Image 
+                        onStartShouldSetResponder={() => {
+                            setIsFavorite(!isFavorite);
+                            // let favoriIndex = favorites.indexOf({ ${name}});
+                            // favorites.splice( favoriIndex, 1);
+                        }
+                        }  
+                        key={3 + index} 
+                        style={styles.favorite_logo}  
+                        source={require('../../../assets/etoile_pleine.png')} 
+                    />
                     }
                 </View>
-                <Text />
+                </>
+            )
+        }else{
+            return
+        }
+    })
+
+    return(
+        <>
+            <View 
+            key={10} 
+            style={styles.contractorsContainer}
+            >
+                {nearestRestaurants}
+                
             </View>
         </>
     )
