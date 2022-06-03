@@ -1,6 +1,22 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
+import fr_crous_restauration_france_entiere from '../../../assets/data/fr_crous_restauration_france_entiere.json';
+
+// Contractors near to the user's city
+// const FindNearRestaurants = () => { 
+//     let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant) => {
+//         if (restaurant.fields.zone.indexOf("Grenoble") !== -1) {
+//             setNearRestaurants(...nearRestaurants, restaurant);
+//             console.log(nearRestaurants);
+//         }else{
+//             alert("Aucun restaurants trouvés dans votre zone");
+//             return
+//         }
+//         return nearRestaurants;
+//     })
+//     return nearestRestaurants
+// }
 
 const Contractor = ({name, cart}) => {
     const { faker } = require('@faker-js/faker');
@@ -27,12 +43,24 @@ const Contractor = ({name, cart}) => {
         "avatar": faker.image.avatar()
     }])
 
+    let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant) => {
+        let theRestaurants = [];
+        if (restaurant.fields.zone.indexOf("Grenoble") !== -1) {
+            theRestaurants.push(restaurant);
+            console.log(theRestaurants)
+        }else{
+            return
+        }
+        return nearestRestaurants;
+    })
+
     return(
         <>
             <View 
             key={10} 
             style={styles.contractorsContainer}
             >
+                {nearestRestaurants}
                 <Image style={styles.image} source={{uri: imageUrl}} />
                 <View key={1} style={styles.textOverflow}>
                     <Text

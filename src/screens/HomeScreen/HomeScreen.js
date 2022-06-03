@@ -29,7 +29,6 @@ const HomeScreen = () => {
             title="Voir la carte"
             onPress={() => navigation.navigate('MapScreen')}
           />
-          <UserLocation />
           <Contractors  updateCart={updateCart} cart={cart} />
         </View>
       </ScrollView>
