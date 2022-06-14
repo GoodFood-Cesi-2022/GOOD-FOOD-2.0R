@@ -22,7 +22,6 @@ const Contractor = ({name, cart}) => {
     const { faker } = require('@faker-js/faker');
     const [isFavorite, setIsFavorite] = useState(true);
     faker.setLocale('fr');
-    const imageUrl = faker.image.food(300, 200, true);
     const navigation = useNavigation();
     
     const [favorites, setFavorites] = useState();
@@ -43,70 +42,54 @@ const Contractor = ({name, cart}) => {
         "avatar": faker.image.avatar()
     }])
 
+    let theRestaurants = [];
+
     // Sort Contractors by user's city
-    let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant, index) => {
-        let theRestaurants = [];
+    let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant) => {
         if (restaurant.fields.zone.indexOf("Grenoble") !== -1) {
             theRestaurants.push(restaurant);
+            // console.log(theRestaurants)
             return(
                 <>
-                <Image key={index} style={styles.image} source={{uri: restaurant.fields.photo}} />
-                <View key={index + 1} style={styles.textOverflow}>
-                    <Text
-                        key={2 + index}  
-                    style={styles.text} 
-                    onStartShouldSetResponder={() => navigation.navigate('ContractorScreen',{
-                        contractorName: name,
-                        contractorAvatar: restaurant.fields.photo,
-                        contractorPhoneNumber: contractorEntity.phone_number,
-                        cart: cart
-                    })}>
-                        {restaurant.fields.title}
-                    </Text>
-                    {
-                        isFavorite ? 
-                            <Image 
-                                onStartShouldSetResponder={() => {
-                                    setIsFavorite(!isFavorite); 
-                                    // setFavorites(...favorites, [name]);
-                                    // console.log(favorites);
-                                }}  
-                                key={3 + index} 
-                                style={styles.favorite_logo}  
-                                source={require('../../../assets/etoile_vide.png')} 
-                            />
-                        :
-                    <Image 
-                        onStartShouldSetResponder={() => {
-                            setIsFavorite(!isFavorite);
-                            // let favoriIndex = favorites.indexOf({ ${name}});
-                            // favorites.splice( favoriIndex, 1);
-                        }
-                        }  
-                        key={3 + index} 
-                        style={styles.favorite_logo}  
-                        source={require('../../../assets/etoile_pleine.png')} 
-                    />
-                    }
-                </View>
+                    <View 
+                    key={10} 
+                    style={styles.contractorsContainer}
+                    >
+                        <Image key={1} style={styles.image} source={{uri: restaurant.fields.photo}} />
+                        <View key={1 + 1} style={styles.textOverflow}>
+                            <Text
+                                key={2 + 1 }  
+                            style={styles.text} 
+                            onStartShouldSetResponder={() => navigation.navigate('ContractorScreen',{
+                                contractorName: restaurant.fields.title,
+                                contractorAvatar: restaurant.fields.photo,
+                                contractorPhoneNumber: contractorEntity.phone_number,
+                                cart: cart
+                            })}>
+                                {restaurant.fields.title}
+                            </Text>
+                            <View
+                            onStartShouldSetResponder={() => {
+                                setIsFavorite(!isFavorite);
+                            }} 
+                            >
+                                <Image
+                                    key={3 + 1} 
+                                    style={styles.favorite_logo}  
+                                    source={isFavorite ?  require('../../../assets/etoile_pleine.png') : require('../../../assets/etoile_vide.png')} 
+                                />
+                            </View>
+                        </View>
+                    </View>
                 </>
-            )
+                )
         }else{
             return
         }
     })
-
-    return(
-        <>
-            <View 
-            key={10} 
-            style={styles.contractorsContainer}
-            >
-                {nearestRestaurants}
-                
-            </View>
-        </>
-    )
+    
+    return nearestRestaurants
+    
 }
 const Contractors_entities = ({cart, updateCart}) => {
     const { faker } = require('@faker-js/faker');
@@ -115,9 +98,7 @@ const Contractors_entities = ({cart, updateCart}) => {
     
     return (
         <View style={styles.container_contractors_entities}>
-            <Contractor name="Le Rousseau"/>
-            <Contractor name="La Corne d'Or"/>
-            <Contractor name="Chavant"/>
+            <Contractor />
         </View>
     )
 }

@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     contractor_name:{
         marginTop:80,
         marginLeft: 30,
-        fontSize:22
+        fontSize:22,
+        marginLeft: 15
     },
     contractor_phone_number:{
         marginTop:20,

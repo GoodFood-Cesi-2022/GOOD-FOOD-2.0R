@@ -1,153 +1,100 @@
-import React, {useState, useEffect } from 'react';
-import { StyleSheet, Text, View,Modal, Linking,Pressable, Button } from 'react-native';
-import { pkceChallenge } from 'react-native-pkce-challenge';
-import axios from 'axios';
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import React, {useState} from 'react';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
-
-const useMount = func => useEffect(() => func(), []);
-
-// COMPONENT DU BOUTON DE CONNEXION REGISTER
-const OpenRegisterButton = () => {
-  function getAuthorizationCode(){
-    const state = Math.ceil(Math.random(40))*1000;
-    const oAuthProviderBaseUrl = 'http://localhost:8085/oauth';
-    const oAuthCallbackUri = 'http://localhost:8085/login/redirect';
-    // const oAuthClientId = '962e63ce-3ca3-4a95-818f-2d9bb2eedc02';
-    const oAuthClientId = '962429b0-b243-4841-bbee-a8960dd9d9af';
-    const challenge = pkceChallenge();
+const LoginScreen = () => {
+   
+  const navigation = useNavigation();
   
-    const query = new URLSearchParams({ 
-      client_id: oAuthClientId,
-      redirect_uri: `${oAuthProviderBaseUrl}/authorize`,
-      response_type: 'code',
-      code_challenge: challenge.codeChallenge,
-      code_challenge_method: 'S256',
-    });
-  
-    axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
-    let url = `${oAuthProviderBaseUrl}/authorize?${query.toString()}`;
-    // window.location.href = url;
-    Linking.openURL(url);
-  }
-  
-  async function authorizationCodeToAccessToken(code, state){
-    console.log('try to change authorization code to access token');
-    const oAuthPostTokenUrl = 'http://localhost:8085/oauth/token';
-    const oAuthCallbackUri = 'http://localhost:4200/login/redirect';
-    const oAuthClientId = '962e63ce-3ca3-4a95-818f-2d9bb2eedc02';
-    const challenge = pkceChallenge();
-    const navigation = useNavigation();
-  
-    await axios
-    .post(oAuthPostTokenUrl, {
-      grant_type: 'authorization_code',
-      client_id: oAuthClientId,
-      redirect_uri: oAuthCallbackUri,
-      code_verifier: challenge.codeVerifier,
-      code: code
-    })
-    .then(function(){
-      navigation.navigate('HomeScreen');
-    })
-    .catch(function(error){
-      console.log("Erreur suivante sur le token: " + error);
-    })
-  }
-  return(
-      <Button style={styles.marginLeft}  title="Click on me !" onPress={getAuthorizationCode} />
-      );
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  return (
+    <View style={styles.main}>
+      <View>
+          <Image style={styles.image} source={require('../../../assets/logo-Good-Food.png')} />
+      </View>
+      <View style={styles.inputView}>
+      <TextInput
+        style={styles.TextInput}
+        placeholder="Email."
+        placeholderTextColor="#003f5c"
+        onChangeText={(email) => setEmail(email)}
+      />
+    </View>
+      
+    <View style={styles.inputView}>
+      <TextInput
+        style={styles.TextInput}
+        placeholder="Password."
+        placeholderTextColor="#003f5c"
+        secureTextEntry={true}
+        onChangeText={(password) => setPassword(password)}
+      />
+    </View>
+      <TouchableOpacity>
+        <Text style={styles.forgot_button}>Forgot Password?</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.loginBtn} onPress={() => {navigation.navigate('HomeScreen')}}>
+        <Text style={[styles.loginText, {color:'black', fontWeight:'bold', fontSize:22}]}>LOGIN</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
 
-// --- COMPONENT qui capture l'url générée par EXPO au lancement de l'app
-// const useInitialURL = () => {
-//   const [url, setUrl] = useState(null);
-//   const [processing, setProcessing] = useState(true);
-
-//   useMount(() => {
-//     const getUrlAsync = async () => {
-//       // Get the deep link used to open the app
-//       const initialUrl = await Linking.getInitialURL();
-
-//       // The setTimeout is just for testing purpose
-//       setTimeout(() => {
-//         setUrl(initialUrl);
-//         setProcessing(false);
-//       }, 1000);
-//     };
-
-//     getUrlAsync();
-//   });
-
-//   return { url, processing };
-// };
-
-const LoginScreen = () => {
-    // const { url: initialUrl, processing } = useInitialURL();
-
-    return (
-      <View  style={styles.container}>
-        <View style={styles.button}>
-          {/* <OpenLoginButton>Se loguer</OpenLoginButton> */}
-          <OpenRegisterButton>S'enregistrer</OpenRegisterButton>
-        </View>
-      </View>
-    );
-};
-
+export default LoginScreen
 
 const styles = StyleSheet.create({
-  container: { 
+  main:{
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center'
+  },
+  h1:{
+      fontSize:22,
+      marginBottom:50,
+  },
+  button:{
+      borderWidth:1,
+      borderColor:'black',
+      borderRadius:50,
+      width:150,
+      height:50,
+      justifyContent:'center',
+      marginTop:30,
+      backgroundColor:'black'
+  },
+  textButton:{
+      textAlign:'center',
+      fontSize:20,
+      color:'white'
+  },
+  inputView: {
+    backgroundColor: "#FFC0CB",
+    borderRadius: 30,
+    width: "70%",
+    height: 45,
+    marginBottom: 20,
+    alignItems: "center",
+  },
+  
+  TextInput: {
+    height: 50,
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  marginLeft:{
-    marginLeft:30,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  button: {
-    flexDirection:'row',
-    borderRadius: 20,
     padding: 10,
-    elevation: 2
+    marginLeft: 20,
   },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
+  forgot_button: {
+    color:'black',
+    height: 30,
+    marginBottom: 30,
   },
-  buttonClose: {
-    backgroundColor: "#2196F3",
+  loginBtn: {
+    width: "80%",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 40,
+    backgroundColor: "#FF1493",
   },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  }
-});
-
-
-export default LoginScreen;
+})

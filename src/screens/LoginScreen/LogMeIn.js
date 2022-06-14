@@ -13,7 +13,7 @@ const LogMeIn = () => {
         <View>
             <Image style={styles.image} source={require('../../../assets/logo-Good-Food.png')} />
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('HomeScreen')}}>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('LoginScreen')}}>
             <Text style={styles.textButton}>Log Me In !</Text>
         </TouchableOpacity>
     </View>
