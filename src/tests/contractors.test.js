@@ -5,7 +5,7 @@ import {useNavigation} from "@react-navigation/native";
 
 it('contractors go back', () => {
   const goBack = () => {
-  const navigation = useNavigation();
+    const navigation = useNavigation();
     if (navigation.canGoBack()) { navigation.goBack();}
     };
 });
