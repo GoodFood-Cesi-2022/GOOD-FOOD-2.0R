@@ -12,7 +12,7 @@ const WebSocketScreen = () => {
   const navigation = useNavigation();
   //   var ws = React.useRef(new WebSocket('ws://w567l.sse.codesandbox.io/')).current;
 //   var ws = React.useRef(new WebSocket('wss://demo.piesocket.com/v3/channel_1?api_key=VCXCEuvhGcBDP7XhiJJUDvR1e1D3eiVjgZ9VRiaV&notify_self')).current;
-  var ws = React.useRef(new WebSocket('wss://javascript.info/article/websocket/chat/ws')).current;
+  let ws = React.useRef(new WebSocket('wss://javascript.info/article/websocket/chat/ws')).current;
   
     let messagesArray = ["Commande reçue", "Commande en préparation", "Commande confiée au livreur", "Commande livrée"];
   

@@ -18,13 +18,13 @@ import fr_crous_restauration_france_entiere from '../../../assets/data/fr_crous_
 //     return nearestRestaurants
 // }
 
-const Contractor = ({name, cart}) => {
+const Contractor = ({cart}) => {
     const { faker } = require('@faker-js/faker');
     const [isFavorite, setIsFavorite] = useState(true);
     faker.setLocale('fr');
     const navigation = useNavigation();
     
-    const [favorites, setFavorites] = useState();
+    // const [favorites, setFavorites] = useState();
     
     const [ contractorEntity, setContractorEntity] = useState([{
         "id": 1,

@@ -10,7 +10,7 @@ import 'moment/locale/fr';
 const AccountScreen = () => {
     const { faker } = require('@faker-js/faker');
     faker.setLocale('fr');
-    var locale = moment();
+    let locale = moment();
     locale.locale('fr');
     locale.format('LLL');
 
