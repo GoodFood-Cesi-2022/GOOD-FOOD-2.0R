@@ -51,6 +51,7 @@ const ContractorScreen = ({route}) => {
                 </View>
                 <View style={[styles.container_bottom, styles.container_button_order]}>
                     <Text 
+                    textID='voir_mon_panier'
                     style={styles.title_button} 
                     onStartShouldSetResponder={() => navigation.navigate('CartScreen',{
                         shoppingCart: shopCart,

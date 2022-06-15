@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { render, fireEvent, getByPlaceholderText } from '@testing-library/react-native';
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
 
 const onChangeTextMock = jest.fn();
 const CHANGE_TEXT = 'content';

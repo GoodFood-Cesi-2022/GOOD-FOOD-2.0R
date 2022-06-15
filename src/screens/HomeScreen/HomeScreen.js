@@ -1,7 +1,6 @@
 import { StyleSheet, Text, ScrollView, Button, View, Image, TouchableOpacity } from 'react-native';
 import React, {useState} from 'react';
 import Contractors from '../../components/Contractors/Contractors';
-import UserLocation from '../../components/UserLocation/UserLocation';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
@@ -28,6 +27,7 @@ const HomeScreen = () => {
           <Button
             title="Voir la carte"
             onPress={() => navigation.navigate('MapScreen')}
+            testID={'seeMapButton'}
           />
           <Contractors  updateCart={updateCart} cart={cart} />
         </View>
