@@ -1,6 +1,7 @@
-import { Alert, Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Alert, Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
+
 
 const LogMeIn = () => {
     

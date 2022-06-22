@@ -46,6 +46,7 @@
     "react-native-stripe-payments": "^1.0.8",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
+    "react-native-webview": "^11.22.2",
     "react-scripts": "^3.4.0",
     "stripe": "^9.1.0"
   },
@@ -59,6 +60,7 @@
     "@types/express": "^4.17.13",
     "@types/react": "^17.0.39",
     "@types/react-native": "^0.66.16",
+    "@types/react-native-auth0": "^2.13.1",
     "@types/react-test-renderer": "^17.0.1",
     "babel-jest": "^28.1.1",
     "concurrently": "4.1.2",
