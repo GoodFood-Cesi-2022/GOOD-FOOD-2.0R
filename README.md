@@ -1,4 +1,6 @@
-# MEETUP DOCKER / REACT NATIVE
+# DOCKER / REACT NATIVE
+## Document technique
+[C'est par ici !](./react-native-src\good-food-mobile\good-food-mobile-technical-documentation)
 
 ## Introduction
 
@@ -31,6 +33,10 @@ On va avoir deux éléments préinstallés et accessible en ligne de commande :
 * React-nactive-cli (create-react-native-app, react-native)
 * exp
 
+## Deux choix s'offre à nous
+1) Cloner le projet dans le dossier source du container (react-native-src)
+2) Créer un nouveau projet (A vous de voir)
+
 On va commencer par créer le projet react-native "hello-meetup".
 
 	$ create-react-native-app hello-meetup
@@ -38,7 +44,7 @@ On va commencer par créer le projet react-native "hello-meetup".
 	
 ## Simulation 
 
-Il convient de renseigner l'IP
+Il convient de renseigner l'IP local de sont ordinateur qui est connecté sur la même connexion que son mobile pour qu'Expo puisse fonctionner (Aller dans le menu démmarrer=>tapez Network=>État du réseau=>Propriétés=>Adresse IPv4)
 
 	$ export env REACT_NATIVE_PACKAGER_HOSTNAME=##MON_IP_LOCAL##
 	
@@ -47,8 +53,8 @@ Si comme moi, vous avez un Iphone, vous ne pouvez plus scanner de QR code comme 
 Sur la machine hote, on va lancer le debugger react-native sur chrome : `http://##MON_IP_LOCAL##:19001/debugger-ui/`
 
 Et pour lancer l'application
-
-	$ exp start -s ##your_email##
+	$ cd ##le nom de votre application##
+	$ exp start -s ##your_email##  || $expo start
 	
 Maintenant on est live et prèt à coder et/ou debugger?
 
@@ -80,3 +86,9 @@ La base de docker. A la recherche de l'image originelle.
 ## Portainer
 
 Une interface hébergé dans un container Docker pour gérer son Docker.
+
+## Paiement avec Stripe
+# Pour une carte VISA
+Numéro de carte de test : 4242 4242 4242 4242
+Validité : 12/34
+CVC : 567
