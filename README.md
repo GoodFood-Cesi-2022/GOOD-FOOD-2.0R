@@ -56,7 +56,7 @@ Et pour lancer l'application
 	$ cd ##le nom de votre application##
 	$ exp start -s ##your_email##  || $expo start
 	
-Maintenant on est live et prèt à coder et/ou debugger?
+Maintenant on est live et prèt à coder et/ou debugger?192.168.96.
 
 ## Expo publish
 

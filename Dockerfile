@@ -1,4 +1,4 @@
-FROM node
+FROM node:bullseye
 
 LABEL NAME=f.marin@radioactivit.com
 

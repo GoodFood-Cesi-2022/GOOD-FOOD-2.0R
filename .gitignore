@@ -7,6 +7,7 @@
 Icon
 
 
+
 # Thumbnails
 ._*
 
@@ -25,3 +26,4 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+node_modules
