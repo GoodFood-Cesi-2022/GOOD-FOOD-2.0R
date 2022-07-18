@@ -1,4 +1,4 @@
-import { Alert, Image, StyleSheet,Button, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet,Button, Text, View } from 'react-native';
 import * as AuthSession from "expo-auth-session";
 import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
@@ -114,68 +114,3 @@ const styles = StyleSheet.create({
         marginTop:50,
     },
 });
-
-// const LogMeIn = () => {
-//     const REGISTER_URL = "http://192.168.210.190:8085/register";
-
-//     const handleLoginSubmit = async () => {
-//         auth0
-//         .webAuth
-//         .authorize({scope: 'openid profile email'})
-//         .then(credentials =>
-//         // Successfully authenticated
-//         // Store the accessToken
-//         this.setState({ accessToken: credentials.accessToken })
-//         )
-//         .catch(error => console.log(error));
-//     }
-
-//     const handleRegisterSubmit = async () =>{
-//         Linking.openURL(REGISTER_URL);
-//     }
-//     return (
-//         <View style={styles.main}>
-//             <View>
-//                 <Text style={styles.h1}>Bienvenue sur Good Food !</Text>
-//             </View>
-//             <View>
-//                 <Image style={styles.image} source={require('../../../assets/logo-Good-Food.png')} />
-//             </View>
-//             <TouchableOpacity style={styles.button} onPress={() => {handleLoginSubmit()}}>
-//                 <Text style={styles.textButton}>Log Me In !</Text>
-//             </TouchableOpacity>
-//             <TouchableOpacity style={styles.button} onPress={() => {handleRegisterSubmit()}}>
-//                 <Text style={styles.textButton}>Sign Me In !</Text>
-//             </TouchableOpacity>
-//         </View>
-//     )
-// }
-
-// export default LogMeIn
-
-// const styles = StyleSheet.create({
-//     main:{
-//         flex:1,
-//         justifyContent:'center',
-//         alignItems:'center'
-//     },
-//     h1:{
-//         fontSize:22,
-//         marginBottom:50,
-//     },
-//     button:{
-//         borderWidth:1,
-//         borderColor:'black',
-//         borderRadius:50,
-//         width:150,
-//         height:50,
-//         justifyContent:'center',
-//         marginTop:30,
-//         backgroundColor:'black'
-//     },
-//     textButton:{
-//         textAlign:'center',
-//         fontSize:20,
-//         color:'white'
-//     }
-// })

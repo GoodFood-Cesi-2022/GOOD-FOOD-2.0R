@@ -5,7 +5,7 @@ import Recipes from '../../components/Recipes/Recipes';
 import { useNavigation } from '@react-navigation/native';
 
 const ContractorScreen = ({route}) => {
-    const {contractorName,contractorPhoneNumber} = route.params;
+    const {contractorName} = route.params;
     const navigation = useNavigation();
     const [shopCart, updateShopCart] = useState([]);
 
