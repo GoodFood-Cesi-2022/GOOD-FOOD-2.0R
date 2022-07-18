@@ -2,11 +2,6 @@ import { Alert, Image, StyleSheet,Button, Text, View } from 'react-native';
 import * as AuthSession from "expo-auth-session";
 import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
-// import * as Linking from 'expo-linking';
-// import Auth0 from 'react-native-auth0';
-// const auth0 = new Auth0({ domain: 'alexriera.eu.auth0.com', clientId: 'b9ikUE4VztSa4wXxLQgWelc68yrtRXID' });
-
-
 // You need to swap out the Auth0 client id and domain with the one from your Auth0 client.
 // In your Auth0 client, you need to also add a url to your authorized redirect urls.
 //
@@ -21,7 +16,7 @@ const authorizationEndpoint = "https://alexriera.eu.auth0.com";
 const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
-export default function App() {
+export default function LogMeIn() {
   const [name, setName] = useState(null);
 
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
@@ -58,8 +53,8 @@ export default function App() {
         const jwtToken = result.params.id_token;
         const decoded = jwtDecode(jwtToken);
 
-        const { name } = decoded;
-        setName(name);
+        const { nameDecoded } = decoded;
+        setName(nameDecoded);
       }
     }
   }, [result]);
