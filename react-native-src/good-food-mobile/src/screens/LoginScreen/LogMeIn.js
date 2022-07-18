@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   main:{
-        flex:2,
+        flex:3,
         justifyContent:'center',
         alignItems:'center'
     },

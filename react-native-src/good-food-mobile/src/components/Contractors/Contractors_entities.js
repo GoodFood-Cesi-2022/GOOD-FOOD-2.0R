@@ -29,7 +29,6 @@ const Contractor = ({cart}) => {
     }])
 
     let theRestaurants = [];
-    let url = "https://picsum.photos/200/200";
     let foodArray = ["../../../assets/data/food/burger.jpg", "../../../assets/data/food/chicken.jpg", "../../../assets/data/food/cocktails.jpg", "../../../assets/data/food/czech.jpg", "../../../assets/data/food/latte.jpg", "../../../assets/data/food/rostbeef.jpg", "../../../assets/data/food/thai.jpg"];
     
     // Sort Contractors by user's city
@@ -43,8 +42,8 @@ const Contractor = ({cart}) => {
                     key={index} 
                     style={styles.contractorsContainer}
                     >
-                        <Image key={index + 1} style={styles.image} source={require("../../../assets/data/food/burger.jpg")} />
-                        <View key={index + 2} style={styles.textOverflow} >
+                        <Image style={styles.image} source={require("../../../assets/data/food/burger.jpg")} />
+                        <View style={styles.textOverflow} >
                                 <Button
                                     title={restaurant.fields.title}
                                     onPress={() => navigation.navigate('ContractorScreen',{
@@ -59,8 +58,7 @@ const Contractor = ({cart}) => {
                                 setIsFavorite(!isFavorite);
                             }} 
                             >
-                                <Image
-                                    key={3 + 1} 
+                                <Image 
                                     style={styles.favorite_logo}  
                                     source={isFavorite ?  require('../../../assets/etoile_pleine.png') : require('../../../assets/etoile_vide.png')} 
                                 />

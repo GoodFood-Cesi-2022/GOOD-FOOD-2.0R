@@ -8,7 +8,7 @@ const Recipes = ({name, price, updateCart, urlImage, cart}) => {
   return (
     <View style={styles.container}>
         <View style={styles.image_container}>
-            <Image style={styles.image} source={require('../../../assets/data/food/chicken.jpg')} />
+            <Image style={styles.image} source={urlImage} />
         </View>
         <View style={styles.recipe_container}>
             <Text style={[styles.text, styles.recipe_name]}>{name}</Text>

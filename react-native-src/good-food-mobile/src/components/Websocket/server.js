@@ -17,6 +17,6 @@ wss.on("connection", function connection(ws) {
 app.get("/", (req, res) => {
   res.send("Hello ALEX !");
 });
-server.listen(8081, () => {
-  console.log("Websocket server écoute sur le port 8081");
+server.listen(8033, () => {
+  console.log("Le serveur node est lancé sur le port 8033");
 });
