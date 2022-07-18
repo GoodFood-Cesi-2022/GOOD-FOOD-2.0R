@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "good-food-mobile",
+    "slug": "good-food-mobile",
+    "description": "Application mobile de commande de repas en livraison",
+    "version": "1.0.0",
+    "icon": "./assets/logo-Good-Food.png",
+    "splash": {
+      "image": "./assets/logo-Good-Food.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "scheme": "goodfood",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo-Good-Food.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    }
+  },
+  "displayName": "good-food-mobile"
+}
