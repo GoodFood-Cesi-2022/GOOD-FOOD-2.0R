@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
     textOverflow:{
         flexDirection:'row',
         justifyContent:'space-between',
-        width:200,
         height:50,
         right:0,
     },
