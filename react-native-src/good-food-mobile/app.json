@@ -18,7 +18,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo-Good-Food.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.cuisinier05.goodfoodmobile"
     }
   },
   "displayName": "good-food-mobile"

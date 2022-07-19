@@ -75,6 +75,8 @@ const styles = StyleSheet.create({
     },
     contractor_header:{
         flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
         zIndex:1,
     },
     image:{

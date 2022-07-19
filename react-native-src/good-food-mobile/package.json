@@ -79,7 +79,7 @@
   "jest": {
     "preset": "react-native"
   },
-  "private": true,
+  "private": false,
   "browserslist": {
     "production": [
       ">0.2%",

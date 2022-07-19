@@ -31,13 +31,13 @@ const CartScreen = ({route}) => {
         handleNumberOfProduct(cartItem);
         return(
             <>
-                <View key={Math.random(1000)*159*15} style={styles.cartItemsContainer}>
-                    <View style={styles.info_item} key={Math.random(40)*Math.random(40)}>
+                <View key={1} style={styles.cartItemsContainer}>
+                    <View style={styles.info_item}>
                         <Text style={[styles.text, styles.text_item_name]}>
                             {cartItem.name}
                         </Text>
                     </View>
-                    <View style={styles.info_item} key={Math.random(40)*Math.random(40)}>
+                    <View style={styles.info_item}>
                         <View style={{flexDirection:'row'}}>
                             <View style={{padding:5, width:55, height:80}}>
                                 <Text style={{textAlign:'center', fontWeight:'bold'}}>-</Text>

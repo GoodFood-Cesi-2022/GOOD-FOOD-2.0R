@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MapScreen from '../screens/MapScreen/MapScreen';
 import LogMeIn from '../screens/LoginScreen/LogMeIn';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
-import MapScreen from '../screens/MapScreen/MapScreen';
 import ContractorScreen from '../screens/ContractorScreen/ContractorScreen';
 import AccountScreen from '../screens/AccountScreen/AccountScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
