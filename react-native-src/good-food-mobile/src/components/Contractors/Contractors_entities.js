@@ -3,15 +3,10 @@ import React, {useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import fr_crous_restauration_france_entiere from '../../../assets/data/fr_crous_restauration_france_entiere.json';
 
-const Contractor = ({cart}) => {
+const SortContractorsByCity = (city) => {
     const { faker } = require('@faker-js/faker');
-    const [isFavorite, setIsFavorite] = useState(true);
-    
     faker.setLocale('fr');
     const navigation = useNavigation();
-
-    // const [favorites, setFavorites] = useState();
-    
     const [ contractorEntity, setContractorEntity] = useState([{
         "id": 1,
         "name": "",
@@ -29,65 +24,111 @@ const Contractor = ({cart}) => {
     }])
 
     let theRestaurants = [];
-    let url = "https://picsum.photos/200/200";
-    let foodArray = ["../../../assets/data/food/burger.jpg", "../../../assets/data/food/chicken.jpg", "../../../assets/data/food/cocktails.jpg", "../../../assets/data/food/czech.jpg", "../../../assets/data/food/latte.jpg", "../../../assets/data/food/rostbeef.jpg", "../../../assets/data/food/thai.jpg"];
     
     // Sort Contractors by user's city
     let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant, index) => {
-        if (restaurant.fields.zone.indexOf("Grenoble") !== -1) {
-            
+        if (restaurant.fields.zone.indexOf(city) !== -1) {
             theRestaurants.push(restaurant);
-            return(
-                <>
-                    <View 
-                    key={index} 
-                    style={styles.contractorsContainer}
-                    >
-                        <Image key={index + 1} style={styles.image} source={require("../../../assets/data/food/burger.jpg")} />
-                        <View key={index + 2} style={styles.textOverflow} >
-                                <Button
-                                    title={restaurant.fields.title}
-                                    onPress={() => navigation.navigate('ContractorScreen',{
-                                        contractorName: restaurant.fields.title,
-                                        contractorPhoneNumber: contractorEntity.phone_number,
-                                        cart: cart
-                                    })}
-                                    style={styles.button_title}
-                                />
-                            {/* <View
-                            onStartShouldSetResponder={() => {
-                                setIsFavorite(!isFavorite);
-                            }} 
-                            >
-                                <Image
-                                    key={3 + 1} 
-                                    style={styles.favorite_logo}  
-                                    source={isFavorite ?  require('../../../assets/etoile_pleine.png') : require('../../../assets/etoile_vide.png')} 
-                                />
-                            </View> */}
-                        </View>
-                    </View>
-                </>
-                )
-        }else{
-            return
+            return restaurant;   
         }
     })
-    
-    return nearestRestaurants
-    
+    return theRestaurants;
 }
+
+const RenderOneContractor = ({cart, urlImage, random}) => {
+    const [isFavorite, setIsFavorite] = useState(true);
+    const [favorites, setFavorites] = useState();
+
+    let restaurants = SortContractorsByCity("Grenoble");
+    const arr = Array.from(restaurants);
+    return(
+        <>
+            <View 
+            key={random} 
+            style={styles.contractorsContainer}
+            >
+                <Image style={styles.image} source={urlImage} />
+                <View
+                onStartShouldSetResponder={() => {
+                    setIsFavorite(!isFavorite);
+                }} 
+                >
+                    <Image 
+                        style={styles.favorite_logo}  
+                        source={isFavorite ?  require('../../../assets/etoile_pleine.png') : require('../../../assets/etoile_vide.png')} 
+                    />
+                </View>
+                <View style={styles.textOverflow} >
+                    <Button
+                        title={arr[random].fields.title}
+                        onPress={() => navigation.navigate('ContractorScreen',{
+                            contractorName: arr[random].fields.title,
+                            contractorPhoneNumber: contractorEntity.phone_number,
+                            cart: cart
+                        })}
+                        style={styles.button_title}
+                    />
+                    
+                </View>
+                    <Text>{arr[random].fields.infos}</Text>
+            </View>
+        </>
+    )
+}
+
 const Contractors_entities = ({cart, updateCart}) => {
     const { faker } = require('@faker-js/faker');
     const [isFavorite, setIsFavorite] = useState(true);
     faker.setLocale('fr');
     
+    
+    const RenderRestaurant = () => {
+        let min=0; 
+        let max=7;  
+        let random = Math.floor(Math.random() * (max - min)) + min;
+        switch(random){
+            case 0:
+                return <RenderOneContractor urlImage={require("../../../assets/data/food/saumon.jpg")} random={random} />
+                break;
+            case 1:
+                return <RenderOneContractor urlImage={require("../../../assets/data/food/entrecote.jpg")} random={random} />
+                break;
+            case 2:
+                return <RenderOneContractor urlImage={require("../../../assets/data/food/chicken.jpg")} random={random} />
+                break;
+            case 3:
+                return <RenderOneContractor urlImage={require("../../../assets/data/food/czech.jpg")} random={random} />
+                break;
+            case 4:
+                return <RenderOneContractor urlImage={require("../../../assets/data/food/salade-verte.jpg")} random={random} />
+                break;
+            case 5:
+                return <RenderOneContractor urlImage={require("../../../assets/data/food/poulet-wings.jpeg")} random={random}  />
+                break;
+            case 6:
+                return <RenderOneContractor urlImage={require("../../../assets/data/food/caille.jpg")} random={random} />
+                break;
+            case 7:
+                return <RenderOneContractor urlImage={require("../../../assets/data/food/burger.jpg")} random={random} />
+                break;
+            default:
+                break;
+            }
+    }
     return (
         <View style={styles.container_contractors_entities}>
-            <Contractor />
+            <RenderRestaurant />
+            <RenderRestaurant />
+            <RenderRestaurant />
+            <RenderRestaurant />
+            <RenderRestaurant />
+            <RenderRestaurant />
+            <RenderRestaurant />
+            <RenderRestaurant />
         </View>
     )
 }
+
 
 export default Contractors_entities
 
@@ -111,8 +152,9 @@ const styles = StyleSheet.create({
     favorite_logo:{
         width:30,
         height:30,
-        marginLeft:125,
-        marginTop: -5
+        right:0,
+        top:0,
+        position:"absolute"
     },
     text:{
         fontSize:18,
@@ -122,11 +164,10 @@ const styles = StyleSheet.create({
     textOverflow:{
         flexDirection:'row',
         justifyContent:'space-between',
-        width:200,
         height:50,
         right:0,
     },
     button_title:{
-        height:80,
+        height:60,
     }
 })
