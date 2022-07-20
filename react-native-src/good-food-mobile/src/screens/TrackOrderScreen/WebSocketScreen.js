@@ -21,7 +21,7 @@ const WebSocketScreen = () => {
       ws.onopen = () => {
           setServerState('Connected to the server')
         setDisableButton(false);
-        setMessageText('La commande sera bientôt chez vous ! :)');
+        ws.send('La commande sera bientôt chez vous ! :)');
         ws.send('Commande reçue');
         setTimeout(() => {
             ws.send('Commande en préparation')
