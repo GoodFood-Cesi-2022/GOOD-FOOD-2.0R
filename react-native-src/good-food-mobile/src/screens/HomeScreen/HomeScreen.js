@@ -28,6 +28,7 @@ const HomeScreen = () => {
             title="Voir la carte"
             onPress={() => navigation.navigate('MapScreen')}
             testID={'seeMapButton'}
+            disabled={true}
           />
           <Contractors  updateCart={updateCart} cart={cart} />
         </View>
