@@ -4,9 +4,24 @@ import { useNavigation } from '@react-navigation/native';
 import fr_crous_restauration_france_entiere from '../../../assets/data/fr_crous_restauration_france_entiere.json';
 
 const SortContractorsByCity = (city) => {
+    
+    let theRestaurants = [];
+    
+    // Sort Contractors by user's city
+    let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant, index) => {
+        if (restaurant.fields.zone.indexOf(city) !== -1) {
+            theRestaurants.push(restaurant);
+            return restaurant;   
+        }
+    })
+    return theRestaurants;
+}
+
+const RenderOneContractor = ({cart, urlImage, random}) => {
+    const [isFavorite, setIsFavorite] = useState(true);
+    const [favorites, setFavorites] = useState();
     const { faker } = require('@faker-js/faker');
     faker.setLocale('fr');
-    const navigation = useNavigation();
     const [ contractorEntity, setContractorEntity] = useState([{
         "id": 1,
         "name": "",
@@ -23,21 +38,7 @@ const SortContractorsByCity = (city) => {
         "avatar": faker.image.avatar()
     }])
 
-    let theRestaurants = [];
-    
-    // Sort Contractors by user's city
-    let nearestRestaurants = fr_crous_restauration_france_entiere.map((restaurant, index) => {
-        if (restaurant.fields.zone.indexOf(city) !== -1) {
-            theRestaurants.push(restaurant);
-            return restaurant;   
-        }
-    })
-    return theRestaurants;
-}
-
-const RenderOneContractor = ({cart, urlImage, random}) => {
-    const [isFavorite, setIsFavorite] = useState(true);
-    const [favorites, setFavorites] = useState();
+    const navigation = useNavigation();
 
     let restaurants = SortContractorsByCity("Grenoble");
     const arr = Array.from(restaurants);
@@ -85,7 +86,7 @@ const Contractors_entities = ({cart, updateCart}) => {
     const RenderRestaurant = () => {
         let min=0; 
         let max=7;  
-        let random = Math.floor(Math.random() * (max - min)) + min;
+        let random =  Math.floor(Math.random() * (max - min)) + min;
         switch(random){
             case 0:
                 return <RenderOneContractor urlImage={require("../../../assets/data/food/saumon.jpg")} random={random} />

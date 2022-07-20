@@ -3,7 +3,7 @@
     "name": "good-food-mobile",
     "slug": "good-food-mobile",
     "description": "Application mobile de commande de repas en livraison",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "icon": "./assets/logo-Good-Food.png",
     "splash": {
       "image": "./assets/logo-Good-Food.png",
