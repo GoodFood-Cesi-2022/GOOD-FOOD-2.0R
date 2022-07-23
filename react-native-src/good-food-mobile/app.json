@@ -20,6 +20,9 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.cuisinier05.goodfoodmobile"
+    },
+    "ios": {
+      "bundleIdentifier": "com.cuisinier05.goodfoodmobile"
     }
   },
   "displayName": "good-food-mobile"
