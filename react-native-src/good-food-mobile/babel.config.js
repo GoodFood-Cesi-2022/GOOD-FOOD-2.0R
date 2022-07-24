@@ -6,7 +6,7 @@ module.exports = function(api) {
       [
         "@babel/plugin-transform-spread",
         {
-          "loose": true
+          "loose": false
         }
       ]
     ]

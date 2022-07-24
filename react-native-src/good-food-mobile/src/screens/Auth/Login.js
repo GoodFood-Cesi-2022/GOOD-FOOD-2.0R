@@ -4,7 +4,7 @@ import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { Button, View, Text, StyleSheet, Image } from 'react-native';
 import { pkceChallenge } from 'react-native-pkce-challenge';
 import axios from 'axios';
-import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -53,7 +53,6 @@ export default function Login() {
   const authorizationCodeToAccessToken = async () => {
     console.log('try to change authorization code into access token');
     const challenge = pkceChallenge();
-    // const [userToken, setUserToken] = useState('');
     const [user1Token, setUser1Token] = useState(undefined);
 
     let codeVerifier = challenge.codeVerifier;

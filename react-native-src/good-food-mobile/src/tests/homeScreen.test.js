@@ -5,7 +5,7 @@ import HomeScreen from '../screens/HomeScreen/HomeScreen';
 
 const onPressMock = jest.fn();
 
-it('render HomeScreen Component properly', () => {
+it('Render HomeScreen Component properly', () => {
     const loadOK = () => { 
         render(<HomeScreen />)
     };

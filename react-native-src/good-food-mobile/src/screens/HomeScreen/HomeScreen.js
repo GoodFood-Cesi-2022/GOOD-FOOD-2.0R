@@ -3,8 +3,10 @@ import React, {useState} from 'react';
 import Contractors from '../../components/Contractors/Contractors';
 import { useNavigation } from '@react-navigation/native';
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
+const HomeScreen = ({ route, navigation }) => {
+  /* 2. Get the param */
+  const { token } = route.params;
+  const nav = useNavigation();
   const [cart, updateCart] = useState([]);
 
   return (
@@ -14,7 +16,9 @@ const HomeScreen = () => {
             style={styles.tinyLogo}
             source={require('../../../assets/tiny_logo_good_food.png')}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('AccountScreen')}>
+        <TouchableOpacity onPress={() => nav.navigate('AccountScreen',{
+          userToken: token
+        })}>
             <Image 
                 style={styles.tinyLogo}
                 source={require('../../../assets/account.png')}
