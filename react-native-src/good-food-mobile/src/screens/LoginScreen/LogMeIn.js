@@ -103,9 +103,9 @@ const styles = StyleSheet.create({
         flex:3,
         justifyContent:'center',
         alignItems:'center'
-    },
-    h1:{
-        fontSize:22,
-        marginTop:50,
-    },
+  },
+  h1:{
+      fontSize:22,
+      marginTop:50,
+  },
 });

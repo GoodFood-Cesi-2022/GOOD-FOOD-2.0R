@@ -31,9 +31,9 @@ const Login = () => {
     }
     let pkceURi = getPkce();
     console.log(pkceURi)
-    console.log(AsyncStorage.getItem('@STATE'))
     return (
-      <WebView style={styles.web} source={{uri: pkceURi}} />
+      <WebView 
+      style={styles.web} source={{uri: pkceURi}} />
     )
 }
 

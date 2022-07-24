@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { Button, View, Text, StyleSheet, Image } from 'react-native';
 import { pkceChallenge } from 'react-native-pkce-challenge';
 import axios from 'axios';
+import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -14,6 +15,8 @@ const discovery = {
 };
 
 export default function Login() {
+  const navigation = useNavigation();
+
   const [request, response, promptAsync] = useAuthRequest(
     {
       clientId: '96d93f8c-3f63-472f-81f9-b58f0612fbf8',
@@ -32,7 +35,7 @@ export default function Login() {
    
   const [authorizationCode, setAuthorizationCode] = useState('');
   const [state, setState] = useState('Je suis un state de youf');
-  const [codeVerif, setCodeVerif] = useState('Je suis un state de youf');
+  const [codeVerif, setCodeVerif] = useState('');
   
   useEffect(() => {
     console.log(response?.type)
@@ -51,7 +54,7 @@ export default function Login() {
     console.log('try to change authorization code into access token');
     const challenge = pkceChallenge();
     // const [userToken, setUserToken] = useState('');
-    const [user1Token, setUser1Token] = useState({});
+    const [user1Token, setUser1Token] = useState(undefined);
 
     let codeVerifier = challenge.codeVerifier;
     let codeChallenge = challenge.codeChallenge;
@@ -84,14 +87,27 @@ export default function Login() {
 
     console.log(`User token 1 : ${user1Token.access_token}`);
 
+    if (user1Token !== undefined) {
+      navigation.navigate('HomeScreen', {
+        token: user1Token,
+      })
+    }
+
   }
   authorizationCodeToAccessToken();
   return (
     <>
-    <View>
-      <Text style={styles.text}>LOGIN</Text>
+    <View style={styles.container}>
+      <View style={styles.main}>
+        <View>
+            <Text style={styles.h1}>Bienvenue sur Good Food !</Text>
+        </View>
+        <View>
+            <Image style={styles.image} source={require('../../../assets/logo-Good-Food.png')} />
+        </View>
+      </View>
       <Button
-        style={[styles.button,{marginTop:100}]}
+        style={styles.button}
         disabled={!request}
         title="Login"
         onPress={() => {
@@ -104,9 +120,26 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  text:{
-    flex:2,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "space-around",
+  },
+  h1:{
+    marginBottom:100
   },
   button:{
+    width:200
+  },
+  main:{
+    justifyContent:'space-between',
+    alignItems:'center'
+  },
+  h1:{
+      fontSize:22,
+      fontWeight:'bold'
+  },
+  image:{
+    marginTop:100
   }
 })
