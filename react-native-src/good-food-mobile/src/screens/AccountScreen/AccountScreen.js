@@ -6,13 +6,29 @@ import MyFavoritesScreen from './MyFavoritesScreen';
 //Import moment for date and time
 import moment from 'moment';
 import 'moment/locale/fr';
+import axios from 'axios';
 
-const AccountScreen = () => {
+const AccountScreen = ({route, navigation}) => {
     const { faker } = require('@faker-js/faker');
+    const [currentUser, setCurrentUser] = useState({});
     faker.setLocale('fr');
     let locale = moment();
     locale.locale('fr');
     locale.format('LLL');
+    const {userToken} = route.params;
+
+    const BASEURLAPI = 'http://192.168.1.54:8080/api';
+
+    if (userToken !== '') {
+        axios.get(`${BASEURLAPI}/users/current`,{
+        headers: {
+            'Authorization': 'Bearer ' + userToken
+        }
+        })
+        .then((response) => setCurrentUser(response.data));
+    }else{
+        console.log('Je n\'ai pas reçu le token');
+    }
 
     const[firstname,setFirstname] = useState("Roberto");
     const[lastname,setLastname] = useState("Carlos");
@@ -37,7 +53,7 @@ const AccountScreen = () => {
                         <TextInput
                             style={styles.text} 
                             onChangeText={setFirstname}
-                            value={firstname}
+                            value={currentUser.firstname !== '' ? currentUser.firstname : ''}
                         />
                     </View>
                     <View style={{flexDirection:'row'}}>
@@ -45,7 +61,7 @@ const AccountScreen = () => {
                         <TextInput
                             style={styles.text} 
                             onChangeText={setLastname}
-                            value={lastname}
+                            value={currentUser.lastname !== '' ? currentUser.lastname : ''}
                         />
                     </View>
                     <View style={{flexDirection:'row'}}>
@@ -60,7 +76,7 @@ const AccountScreen = () => {
                         <Text style={styles.text}>Email: </Text>
                         <TextInput
                             style={styles.text}
-                            value={`${firstname.toLowerCase()}.${lastname.toLowerCase()}@viacesi.fr`}
+                            value={currentUser.email !== '' ? currentUser.email : ''}
                         />
                     </View>
                 </View>

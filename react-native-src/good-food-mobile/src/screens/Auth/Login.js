@@ -36,7 +36,8 @@ export default function Login() {
   const [authorizationCode, setAuthorizationCode] = useState('');
   const [state, setState] = useState('Je suis un state de youf');
   const [codeVerif, setCodeVerif] = useState('');
-  
+  const challenge = pkceChallenge();
+  const [user1Token, setUser1Token] = useState(undefined);
   useEffect(() => {
     console.log(response?.type)
     // console.log(response.params)
@@ -52,8 +53,7 @@ export default function Login() {
 
   const authorizationCodeToAccessToken = async () => {
     console.log('try to change authorization code into access token');
-    const challenge = pkceChallenge();
-    const [user1Token, setUser1Token] = useState(undefined);
+    
 
     let codeVerifier = challenge.codeVerifier;
     let codeChallenge = challenge.codeChallenge;
@@ -88,12 +88,17 @@ export default function Login() {
 
     if (user1Token !== undefined) {
       navigation.navigate('HomeScreen', {
-        token: user1Token,
+        token: user1Token.access_token,
       })
     }
 
   }
   authorizationCodeToAccessToken();
+
+  const redirect_uri = makeRedirectUri({
+    scheme: 'goodfood'
+    });
+
   return (
     <>
     <View style={styles.container}>

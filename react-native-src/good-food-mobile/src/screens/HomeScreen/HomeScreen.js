@@ -2,13 +2,28 @@ import { StyleSheet, Text, ScrollView, Button, View, Image, TouchableOpacity } f
 import React, {useState} from 'react';
 import Contractors from '../../components/Contractors/Contractors';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const HomeScreen = ({ route, navigation }) => {
   /* 2. Get the param */
   const { token } = route.params;
   const nav = useNavigation();
   const [cart, updateCart] = useState([]);
+  const [users, setUsers] = useState();
 
+  const BASEURLAPI = 'http://192.168.1.54:8080/api';
+
+  if (token !== '') {
+    axios.get(`${BASEURLAPI}/users`,{
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
+    .then((response) => console.log(response.data));
+  }else{
+    console.log('Je n\'ai pas reçu le token');
+  }
+  
   return (
     <>
       <View style={{flexDirection:'row', justifyContent:'space-evenly', borderBottomWidth:2, paddingBottom:10, marginTop:30}}>
