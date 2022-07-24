@@ -5,7 +5,7 @@ import UserLocation from '../../components/UserLocation/UserLocation';
 import Header from  '../../components/Header/Header';
 import fr_crous_restauration_france_entiere from '../../../assets/data/fr_crous_restauration_france_entiere.json';
 
-const MapScreen = (props) => {
+const MapScreen = ({navigation, route, userToken}) => {
   const { faker } = require('@faker-js/faker');
   faker.setLocale('fr');
   
@@ -97,7 +97,7 @@ const MapScreen = (props) => {
 
   return(
     <>
-      <Header />
+      <Header route={route} userToken={userToken}/>
       <UserLocation />
       <MapView
         style={{ flex: 1 }}

@@ -4,25 +4,25 @@ import Contractors from '../../components/Contractors/Contractors';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
-const HomeScreen = ({ route, navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
   /* 2. Get the param */
-  const { token } = route.params;
+  const { userToken } = route.params;
   const nav = useNavigation();
   const [cart, updateCart] = useState([]);
   const [users, setUsers] = useState();
 
-  const BASEURLAPI = 'http://192.168.1.54:8080/api';
+  // const BASEURLAPI = 'http://192.168.1.54:8080/api';
 
-  if (token !== '') {
-    axios.get(`${BASEURLAPI}/users`,{
-      headers: {
-        'Authorization': 'Bearer ' + token
-      }
-    })
-    .then((response) => console.log(response.data));
-  }else{
-    console.log('Je n\'ai pas reçu le token');
-  }
+  // if (userToken !== '') {
+  //   axios.get(`${BASEURLAPI}/users`,{
+  //     headers: {
+  //       'Authorization': 'Bearer ' + userToken
+  //     }
+  //   })
+  //   .then((response) => console.log(response.data));
+  // }else{
+  //   console.log('Je n\'ai pas reçu le userToken');
+  // }
   
   return (
     <>
@@ -32,7 +32,8 @@ const HomeScreen = ({ route, navigation }) => {
             source={require('../../../assets/tiny_logo_good_food.png')}
         />
         <TouchableOpacity onPress={() => nav.navigate('AccountScreen',{
-          userToken: token
+          userToken: userToken,
+          route:route,
         })}>
             <Image 
                 style={styles.tinyLogo}
@@ -45,9 +46,13 @@ const HomeScreen = ({ route, navigation }) => {
           <Text style={[styles.text, styles.title]}>Les restaurants près de chez vous !</Text>
           <Button
             title="Voir la carte"
-            onPress={() => navigation.navigate('MapScreen')}
+            onPress={() => nav.navigate('MapScreen',{
+              userToken: userToken,
+              navigation: navigation,
+              route:route,
+            })}
             testID={'seeMapButton'}
-            disabled={true}
+            // disabled={true}
           />
           <Contractors  updateCart={updateCart} cart={cart} />
         </View>

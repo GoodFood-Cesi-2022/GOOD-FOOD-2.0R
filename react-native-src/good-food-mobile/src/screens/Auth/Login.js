@@ -14,8 +14,8 @@ const discovery = {
   tokenEndpoint: 'http://192.168.1.54:8085/oauth/token',
 };
 
-export default function Login() {
-  const navigation = useNavigation();
+export default function Login({navigation, route}) {
+  const nav = useNavigation();
 
   const [request, response, promptAsync] = useAuthRequest(
     {
@@ -39,14 +39,14 @@ export default function Login() {
   const challenge = pkceChallenge();
   const [user1Token, setUser1Token] = useState(undefined);
   useEffect(() => {
-    console.log(response?.type)
+    // console.log(response?.type)
     // console.log(response.params)
-    console.log('Je suis là connard !')
+    // console.log('Je suis là connard !')
     if (response?.type === 'success') {
       const { code } = response.params;
       setCodeVerif(request.codeVerifier);
-      console.log(`code verifier 1: ${codeVerif}`);
-      console.log(`Code authorization : ${code}`);
+      // console.log(`code verifier 1: ${codeVerif}`);
+      // console.log(`Code authorization : ${code}`);
       setAuthorizationCode(code);
       }
   }, [response]);
@@ -56,7 +56,7 @@ export default function Login() {
     
 
     let codeVerifier = challenge.codeVerifier;
-    let codeChallenge = challenge.codeChallenge;
+    // let codeChallenge = challenge.codeChallenge;
 
     if (!codeVerifier && !state) {
       console.error('Workflow auth is not inizialized');
@@ -78,8 +78,8 @@ export default function Login() {
     axios.post('http://192.168.1.54:8085/oauth/token',config)
     .then((response) => {
       const data = response.data
-      console.log(`axios response`)
-      console.log(data);
+      // console.log(`axios response`)
+      // console.log(data);
       setUser1Token(data)
       }
     );
@@ -87,8 +87,10 @@ export default function Login() {
     console.log(`User token 1 : ${user1Token.access_token}`);
 
     if (user1Token !== undefined) {
-      navigation.navigate('HomeScreen', {
-        token: user1Token.access_token,
+      nav.navigate('HomeScreen', {
+        userToken: user1Token.access_token,
+        navigation: navigation,
+        route:route,
       })
     }
 

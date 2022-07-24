@@ -2,24 +2,32 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-const Header = (props) => {
-    const navigation = useNavigation();
+const Header = ({navigation, route, userToken}) => {
+    const nav = useNavigation();
     
   return (
     <View style={styles.header_container}>       
         <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.goBack()}
+            onPress={() => nav.goBack()}
         >
             <Text style={styles.text_button}>Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+        <TouchableOpacity onPress={() => nav.navigate('HomeScreen', {
+            userToken: userToken,
+            navigation: navigation,
+            route:route,
+        })}>
             <Image 
                 style={styles.tinyLogo}
                 source={require('../../../assets/tiny_logo_good_food.png')}
             />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('AccountScreen')}>
+        <TouchableOpacity onPress={() => nav.navigate('AccountScreen', {
+            userToken: userToken,
+            navigation: navigation,
+            route:route,
+        })}>
             <Image 
                 style={styles.tinyLogo}
                 source={require('../../../assets/account.png')}

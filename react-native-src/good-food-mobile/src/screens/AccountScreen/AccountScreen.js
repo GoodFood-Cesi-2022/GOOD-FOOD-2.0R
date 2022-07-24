@@ -8,7 +8,7 @@ import moment from 'moment';
 import 'moment/locale/fr';
 import axios from 'axios';
 
-const AccountScreen = ({route, navigation}) => {
+const AccountScreen = ({navigation, route}) => {
     const { faker } = require('@faker-js/faker');
     const [currentUser, setCurrentUser] = useState({});
     faker.setLocale('fr');
@@ -17,6 +17,7 @@ const AccountScreen = ({route, navigation}) => {
     locale.format('LLL');
     const {userToken} = route.params;
 
+    
     const BASEURLAPI = 'http://192.168.1.54:8080/api';
 
     if (userToken !== '') {
@@ -38,7 +39,7 @@ const AccountScreen = ({route, navigation}) => {
     
   return (
       <>
-        <Header />
+        <Header navigation={navigation} route={route} userToken={userToken}/>
         <ScrollView>
             <View>
                 <Text style={[styles.title, {textDecorationLine:'underline'}]}>Mon compte</Text>
