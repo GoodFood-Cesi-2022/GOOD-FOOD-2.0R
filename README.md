@@ -1,6 +1,6 @@
 # DOCKER / REACT NATIVE
 ## Document technique
-[C'est par ici !](./react-native-src\good-food-mobile\good-food-mobile-technical-documentation)
+[C'est par ici !](https://www.alexandre-riera.fr/good-food-mobile-technical-documentation/site)
 
 ## Introduction
 

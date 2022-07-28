@@ -86,7 +86,7 @@ const Contractors_entities = ({cart, updateCart}) => {
     const RenderRestaurant = () => {
         let min=0; 
         let max=7;  
-        let random =  Math.floor(Math.random() * (max - min)) + min;
+        let random =  Math.floor(Math.random()) * (max - min) + min;
         switch(random){
             case 0:
                 return <RenderOneContractor urlImage={require("../../../assets/data/food/saumon.jpg")} random={random} />

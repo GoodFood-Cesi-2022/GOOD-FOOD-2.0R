@@ -8,13 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 
 WebBrowser.maybeCompleteAuthSession();
 
+const IPAdress = '10.138.128.76';
 // Endpoint
 const discovery = {
-  authorizationEndpoint: 'http://192.168.1.54:8085/oauth/authorize',
-  tokenEndpoint: 'http://192.168.1.54:8085/oauth/token',
+  authorizationEndpoint: `http://${IPAdress}:8085/oauth/authorize`,
+  tokenEndpoint: `http://${IPAdress}:8085/oauth/token`,
 };
 
-export default function Login({navigation, route}) {
+export default function Login({route}) {
   const nav = useNavigation();
 
   const [request, response, promptAsync] = useAuthRequest(
@@ -22,7 +23,7 @@ export default function Login({navigation, route}) {
       clientId: '96d93f8c-3f63-472f-81f9-b58f0612fbf8',
       scope: [],
       // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
-      // this must be set to false
+      
       usePKCE: true,
       redirectUri: makeRedirectUri({
         scheme: 'goodfood'
@@ -37,16 +38,14 @@ export default function Login({navigation, route}) {
   const [state, setState] = useState('Je suis un state de youf');
   const [codeVerif, setCodeVerif] = useState('');
   const challenge = pkceChallenge();
-  const [user1Token, setUser1Token] = useState(undefined);
+  const [user1Token, setUser1Token] = useState({});
   useEffect(() => {
-    // console.log(response?.type)
-    // console.log(response.params)
-    // console.log('Je suis là connard !')
+    console.log(response?.type)
     if (response?.type === 'success') {
       const { code } = response.params;
       setCodeVerif(request.codeVerifier);
-      // console.log(`code verifier 1: ${codeVerif}`);
-      // console.log(`Code authorization : ${code}`);
+      console.log(`code verifier 1: ${codeVerif}`);
+      console.log(`Code authorization : ${code}`);
       setAuthorizationCode(code);
       }
   }, [response]);
@@ -55,10 +54,9 @@ export default function Login({navigation, route}) {
     console.log('try to change authorization code into access token');
     
 
-    let codeVerifier = challenge.codeVerifier;
-    // let codeChallenge = challenge.codeChallenge;
+    // let codeVerifier = challenge.codeVerifier;
 
-    if (!codeVerifier && !state) {
+    if (!codeVerif && !state) {
       console.error('Workflow auth is not inizialized');
     }
 
@@ -71,26 +69,23 @@ export default function Login({navigation, route}) {
       code_verifier: codeVerif,
       code: authorizationCode,
     }
-
-    // console.log(config);
     
-    const token =
-    axios.post('http://192.168.1.54:8085/oauth/token',config)
-    .then((response) => {
-      const data = response.data
-      // console.log(`axios response`)
-      // console.log(data);
-      setUser1Token(data)
-      }
-    );
+    const token = await
+    axios.post(`http://${IPAdress}:8085/oauth/token`,config)
+    .then((response) => setUser1Token(response.data))
+    .then(() => {
+      console.log(`User token 1 : ${user1Token.access_token}`)
+    })
+    .catch((e) => {
+      console.error(e);
+    });
 
-    console.log(`User token 1 : ${user1Token.access_token}`);
 
     if (user1Token !== undefined) {
       nav.navigate('HomeScreen', {
-        userToken: user1Token.access_token,
-        navigation: navigation,
         route:route,
+        token: user1Token.access_token,
+        IPAdress: IPAdress
       })
     }
 

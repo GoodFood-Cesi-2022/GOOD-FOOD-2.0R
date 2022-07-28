@@ -7,15 +7,15 @@
         
         
         
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Architecture des dossiers de travail - GOOD FOOD V2</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>PanierPage page - GOOD FOOD V2</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -23,7 +23,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">GOOD FOOD V2</a>
+                <a class="navbar-brand" href="../..">GOOD FOOD V2</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -34,29 +34,29 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Architecture des dossiers de travail</a>
+                            <li class="navitem">
+                                <a href="../../architecture/" class="nav-link">Architecture des dossiers de travail</a>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gestion des pages <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../Gestion%20des%20pages/PanierPage_page/" class="dropdown-item">PanierPage page</a>
+    <a href="./" class="dropdown-item active">PanierPage page</a>
 </li>
                                     
 <li>
-    <a href="../Gestion%20des%20pages/franchisePage_page/" class="dropdown-item">franchisePage page</a>
+    <a href="../franchisePage_page/" class="dropdown-item">franchisePage page</a>
 </li>
                                     
 <li>
-    <a href="../Gestion%20des%20pages/homePage_page/" class="dropdown-item">homePage page</a>
+    <a href="../homePage_page/" class="dropdown-item">homePage page</a>
 </li>
                                     
 <li>
-    <a href="../Gestion%20des%20pages/login_register_page/" class="dropdown-item">Login register page</a>
+    <a href="../login_register_page/" class="dropdown-item">Login register page</a>
 </li>
                                 </ul>
                             </li>
@@ -69,12 +69,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
+                                <a rel="prev" href="../../architecture/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../Gestion%20des%20pages/PanierPage_page/" class="nav-link">
+                                <a rel="next" href="../franchisePage_page/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -96,16 +96,8 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#architecture-des-dossiers-de-travail" class="nav-link">Architecture des dossiers de travail</a>
+            <li class="nav-item" data-level="2"><a href="#la-page-panier" class="nav-link">La page panier</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#les-principaux-dossiers-sources" class="nav-link">Les principaux dossiers sources</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#definition-des-dossiers" class="nav-link">Définition des dossiers</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -113,45 +105,11 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="architecture-des-dossiers-de-travail">Architecture des dossiers de travail</h1>
-<ul>
-<li>
-<h2 id="les-principaux-dossiers-sources">Les principaux dossiers sources</h2>
-<ul>
-<li>../App.js</li>
-<li>android</li>
-<li>ios</li>
-<li>./src/ :<ul>
-<li>components</li>
-<li>navigation</li>
-<li>screens</li>
-<li>tests</li>
-</ul>
-</li>
-<li>./assets</li>
-</ul>
-</li>
-<li>
-<h2 id="definition-des-dossiers">Définition des dossiers</h2>
-<ul>
-<li>../App.js est le point d'entrée de l'application mobile quand elle est lancée</li>
-<li>./src/ :<ul>
-<li>components<br />
-    Sont toutes les parties autonomes des screens (CustomInput, Logo, CustomButton,...).<br />
-    Un component gérera son affichage, son style et son export.</li>
-<li>navigation<br />
-    Contient un fichier index.js renseignant tout les screens de l'application mobile qui seront affichés.</li>
-<li>screens<br />
-    Un screen est un 'template' sur lequel on vient charger des components.</li>
-<li>tests
-    Sont les fichiers de tests qui seront utilisés par Jest.</li>
-</ul>
-</li>
-<li>./assets<br />
-    Le dossier des assets contiendra les images et le fichier data des franchisés</li>
-</ul>
-</li>
-</ul></div>
+<h1 style="text-align:center;">Gestion de la page panier</h1>
+
+<h2 id="la-page-panier">La page panier</h2>
+<p>Sur la page panier, on retrouve la liste des plats commandés par l'utilisateur.
+Un bouton "Payer" se trouve en bas de page pour lui permettre de payer son panier par carte bleue à l'aide de l'extension sécurisée Stripe.</p></div>
             </div>
         </div>
 
@@ -160,11 +118,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "..",
+            var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

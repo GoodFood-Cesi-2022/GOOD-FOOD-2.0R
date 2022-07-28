@@ -11,6 +11,8 @@
 * [NodeJS](https://nodejs.org/en/) # Contenant également le gestionnaire de paquet NPM.
 * [Expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=fr&gl=US) # Pour émuler l'application mobile sur vos devices Android et IOS
 * Installer "Expo CLI" : ```npm install -g expo-cli```
+* Installer YARN pour installer les dépendances du projet
+# ATTENTION DE BIEN SE POSITIONNER DANS react-native-src/good-food-mobile
 
 ## Création normale du projet React-Native avec Expo SANS DOCKER
 
@@ -22,7 +24,7 @@
 
     * ### Visualiser le projet sur son device
         * Installer Expo sur son device
-        * Ouvrir Expo et flasher le QRcode généré par la commande npm start  
+        * Ouvrir Expo et flasher le QRcode généré par la commande expo start  
         (Pour IOS, utiliser le lecteur de QRcode intégré à l'appareil photo) 
 
 C'est tout ! Il suffit maintenant de modifier le fichier App.js pour commencer à développer  

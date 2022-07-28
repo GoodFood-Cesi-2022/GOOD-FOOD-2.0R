@@ -4,25 +4,25 @@ import Contractors from '../../components/Contractors/Contractors';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
-const HomeScreen = ({ navigation, route }) => {
+const HomeScreen = ({ route }) => {
   /* 2. Get the param */
-  const { userToken } = route.params;
+  const {token, IPAdress} = route.params;
   const nav = useNavigation();
   const [cart, updateCart] = useState([]);
   const [users, setUsers] = useState();
 
-  // const BASEURLAPI = 'http://192.168.1.54:8080/api';
+  const BASEURLAPI = `http://${IPAdress}:8080/api`;
 
-  // if (userToken !== '') {
-  //   axios.get(`${BASEURLAPI}/users`,{
-  //     headers: {
-  //       'Authorization': 'Bearer ' + userToken
-  //     }
-  //   })
-  //   .then((response) => console.log(response.data));
-  // }else{
-  //   console.log('Je n\'ai pas reçu le userToken');
-  // }
+  if (token !== '') {
+    axios.get(`${BASEURLAPI}/users`,{
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
+    .then((response) => console.log(response.data));
+  }else{
+    console.log('Je n\'ai pas reçu le userToken');
+  }
   
   return (
     <>
@@ -32,7 +32,6 @@ const HomeScreen = ({ navigation, route }) => {
             source={require('../../../assets/tiny_logo_good_food.png')}
         />
         <TouchableOpacity onPress={() => nav.navigate('AccountScreen',{
-          userToken: userToken,
           route:route,
         })}>
             <Image 
@@ -47,8 +46,6 @@ const HomeScreen = ({ navigation, route }) => {
           <Button
             title="Voir la carte"
             onPress={() => nav.navigate('MapScreen',{
-              userToken: userToken,
-              navigation: navigation,
               route:route,
             })}
             testID={'seeMapButton'}

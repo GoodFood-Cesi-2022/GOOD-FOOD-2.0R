@@ -25,14 +25,14 @@ const WebSocketScreen = () => {
         ws.send('Commande reçue');
         setTimeout(() => {
             ws.send('Commande en préparation')
-        }, 30000);
+        }, 10000);
         
         setTimeout(() => {
             ws.send('Commande confiée au livreur')
-        }, 60000);
+        }, 20000);
         setTimeout(() => {
             ws.send('Commande livrée, bon appétit !')
-        }, 90000);
+        }, 25000);
     };
     ws.onclose = (e) => {
       setServerState('Disconnected. Check internet or server.')
@@ -57,39 +57,41 @@ const WebSocketScreen = () => {
 
   return (
       <View style={styles.container}>
-          <View style={styles.logo_container}>
-            <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-                <Image 
-                    style={styles.logo}
-                    source={require('../../../assets/logo-Good-Food-150x150.png')}
-                />
-            </TouchableOpacity>
+        <View style={styles.logo_container}>
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+              <Image 
+                  style={styles.logo}
+                  source={require('../../../assets/logo-Good-Food-150x150.png')}
+              />
+          </TouchableOpacity>
+        </View>
+        <ScrollView>
+          <View style={{marginTop:40, marginBottom:30}}>
+              <Text style={{fontSize:22, textAlign:'center'}}>Merci pour votre commande !</Text>
           </View>
-        <View style={{marginTop:40, marginBottom:30}}>
-            <Text style={{fontSize:22, textAlign:'center'}}>Merci pour votre commande !</Text>
-        </View>
-        <View style={{
-            height: 30,
-            backgroundColor: '#eeceff',
-            padding: 5,
-            marginBottom:30,
-        }}>
-            {/* Permet d'envoyer l'état du serveur*/}
-            <Text>{serverState}</Text>
-        </View>
-        
-        <View>
-            <ScrollView>
-            {
-                serverMessages.map((item, ind) => {
-                return (
-                    <View style={styles.textBubble_container}>
-                        <Text style={styles.textBubble} key={ind}>{item}</Text>
-                    </View>
-                )
-                })}
-            </ScrollView>
-        </View>
+          <View style={{
+              height: 30,
+              backgroundColor: '#eeceff',
+              padding: 5,
+              marginBottom:30,
+          }}>
+              {/* Permet d'envoyer l'état du serveur*/}
+              <Text>{serverState}</Text>
+          </View>
+          
+          <View>
+              <ScrollView showsVerticalScrollIndicator={false}>
+              {
+                  serverMessages.map((item, ind) => {
+                  return (
+                      <View style={styles.textBubble_container}>
+                          <Text style={styles.textBubble} key={ind}>{item}</Text>
+                      </View>
+                  )
+                  })}
+              </ScrollView>
+          </View>
+        </ScrollView>
         <View style={{flexDirection: 'row'}}>
             {/* <TextInput style={{
                 borderWidth: 1,

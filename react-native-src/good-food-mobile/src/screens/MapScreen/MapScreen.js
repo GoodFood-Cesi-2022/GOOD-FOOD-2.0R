@@ -97,7 +97,7 @@ const MapScreen = ({navigation, route, userToken}) => {
 
   return(
     <>
-      <Header route={route} userToken={userToken}/>
+      <Header route={route} userToken={userToken} />
       <UserLocation />
       <MapView
         style={{ flex: 1 }}

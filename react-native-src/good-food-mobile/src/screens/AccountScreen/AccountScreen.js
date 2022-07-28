@@ -15,21 +15,20 @@ const AccountScreen = ({navigation, route}) => {
     let locale = moment();
     locale.locale('fr');
     locale.format('LLL');
-    const {userToken} = route.params;
 
     
-    const BASEURLAPI = 'http://192.168.1.54:8080/api';
+    // const BASEURLAPI = 'http://192.168.159.190:8080/api';
 
-    if (userToken !== '') {
-        axios.get(`${BASEURLAPI}/users/current`,{
-        headers: {
-            'Authorization': 'Bearer ' + userToken
-        }
-        })
-        .then((response) => setCurrentUser(response.data));
-    }else{
-        console.log('Je n\'ai pas reçu le token');
-    }
+    // if (userToken !== '') {
+    //     axios.get(`${BASEURLAPI}/users/current`,{
+    //     headers: {
+    //         'Authorization': 'Bearer ' + userToken
+    //     }
+    //     })
+    //     .then((response) => setCurrentUser(response.data));
+    // }else{
+    //     console.log('Je n\'ai pas reçu le token');
+    // }
 
     const[firstname,setFirstname] = useState("Roberto");
     const[lastname,setLastname] = useState("Carlos");
@@ -39,7 +38,7 @@ const AccountScreen = ({navigation, route}) => {
     
   return (
       <>
-        <Header navigation={navigation} route={route} userToken={userToken}/>
+        <Header navigation={navigation} route={route} />
         <ScrollView>
             <View>
                 <Text style={[styles.title, {textDecorationLine:'underline'}]}>Mon compte</Text>
@@ -54,7 +53,7 @@ const AccountScreen = ({navigation, route}) => {
                         <TextInput
                             style={styles.text} 
                             onChangeText={setFirstname}
-                            value={currentUser.firstname !== '' ? currentUser.firstname : ''}
+                            value={firstname !== '' ? firstname : ''}
                         />
                     </View>
                     <View style={{flexDirection:'row'}}>
@@ -62,7 +61,7 @@ const AccountScreen = ({navigation, route}) => {
                         <TextInput
                             style={styles.text} 
                             onChangeText={setLastname}
-                            value={currentUser.lastname !== '' ? currentUser.lastname : ''}
+                            value={lastname !== '' ? lastname : ''}
                         />
                     </View>
                     <View style={{flexDirection:'row'}}>

@@ -118,7 +118,7 @@ export default function PaymentsUICompleteScreen({route}) {
     // In your app’s checkout, make a network request to the backend and initialize PaymentSheet.
     // To reduce loading time, make this request before the Checkout button is tapped, e.g. when the screen is loaded.
     <>
-      <Header />
+      <Header navigation={navigation} route={navigation} userToken={navigation} />
       <View style={styles.container}>
         <Text style={styles.text}>Vous allez vous régaler !</Text>
         <Text style={styles.text}>Merci de nous faire confiance</Text>
