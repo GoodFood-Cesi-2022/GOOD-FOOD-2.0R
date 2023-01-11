@@ -78,7 +78,7 @@ function onWorkerMessage (e) {
     var results = e.data.results;
     displayResults(results);
   } else if (e.data.config) {
-    min_search_length = e.data.config.min_search_length-1;
+    let min_search_length = e.data.config.min_search_length-1;
   }
 }
 
